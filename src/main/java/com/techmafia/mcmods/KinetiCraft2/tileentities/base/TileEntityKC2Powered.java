@@ -2,7 +2,9 @@ package com.techmafia.mcmods.KinetiCraft2.tileentities.base;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -58,6 +60,18 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
     @Override
     public void updateEntity() {
         super.updateEntity();
+
+        // Distribute power
+        if (!worldObj.isRemote && isActive()) {
+            for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+                TileEntity adjacentTile = worldObj.getTileEntity(xCoord + direction.offsetX, yCoord + direction.offsetY, zCoord + direction.offsetZ);
+
+                if (adjacentTile instanceof IEnergyReceiver) {
+                    IEnergyReceiver handler = (IEnergyReceiver)adjacentTile;
+                    energyStorage.extractEnergy(handler.receiveEnergy(direction.getOpposite(), energyStorage.extractEnergy(energyStorage.getMaxExtract(), true), false), false);
+                }
+            }
+        }
     }
 
     // TileEntityKC2Base methods

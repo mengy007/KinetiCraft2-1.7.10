@@ -3,6 +3,7 @@ package com.techmafia.mcmods.KinetiCraft2.blocks;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2Items;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
+import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,8 +35,8 @@ public class BlockKC2KineticBlock extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List par3List) {
-        par3List.add(new ItemStack(item, 1, 0));
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(item, 1, 0));
     }
 
     //

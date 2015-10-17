@@ -1,13 +1,17 @@
 package com.techmafia.mcmods.KinetiCraft2.blocks;
 
+import cofh.api.block.IDismantleable;
 import cofh.core.block.BlockCoFHBase;
 import cofh.core.util.CoreUtils;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
+import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticEnergyCore;
 import com.techmafia.mcmods.KinetiCraft2.items.KineticEnergyCore;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2KineticCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2StoneKineticCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2WoodenKineticCube;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Base;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
+import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
 import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
 import com.techmafia.mcmods.KinetiCraft2.utility.StaticUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -22,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,11 +38,12 @@ import java.util.List;
 /**
  * Created by Meng on 7/31/2015.
  */
-public class BlockKC2EnergyCube extends BlockCoFHBase {
+public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable {
     public static final int META_KINETIC_ENERGY_CUBE = 0;
 
     public static final String[] _subBlocks = {
-            "kineticEnergyCube"
+            "woodenKineticEnergyCube",
+            "stoneKineticEnergyCube"
     };
 
     private IIcon[] _icons = new IIcon[_subBlocks.length];
@@ -49,7 +55,7 @@ public class BlockKC2EnergyCube extends BlockCoFHBase {
         setStepSound(soundTypeMetal);
         setHardness(0.1f);
         setBlockName("kc2EnergyCube");
-        setBlockTextureName(Reference.TEXTURE_NAME_PREFIX + "kineticEnergyCube");
+        setBlockTextureName(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1));
         this.setCreativeTab(CreativeTabKC2.KC2_TAB);
     }
 
@@ -103,19 +109,21 @@ public class BlockKC2EnergyCube extends BlockCoFHBase {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        this.blockIcon = par1IconRegister.registerIcon(Reference.TEXTURE_NAME_PREFIX + getUnlocalizedName());
+        this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1));
 
         for(int i = 0; i < _subBlocks.length; ++i) {
-            _icons[i] = par1IconRegister.registerIcon(Reference.TEXTURE_NAME_PREFIX + getUnlocalizedName() + "." + _subBlocks[i]);
-            _activeIcons[i] = par1IconRegister.registerIcon(Reference.TEXTURE_NAME_PREFIX + getUnlocalizedName() + "." + _subBlocks[i] + ".active");
+            _icons[i] = par1IconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1) + "." + _subBlocks[i]);
+            _activeIcons[i] = par1IconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1) + "." + _subBlocks[i] + ".active");
         }
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
         switch(metadata) {
-            case META_KINETIC_ENERGY_CUBE:
-                return new TileEntityKC2KineticCube();
+            case 0:
+                return new TileEntityKC2WoodenKineticCube();
+            case 1:
+                return new TileEntityKC2StoneKineticCube();
             default:
                 throw new IllegalArgumentException("Unknown metadata for tile entity");
         }
@@ -126,38 +134,41 @@ public class BlockKC2EnergyCube extends BlockCoFHBase {
     }
 
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(this.getEnergyCubeItemStack());
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list) {
+        //list.add(this.getEnergyCubeItemStack());
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
         TileEntity te = world.getTileEntity(x, y, z);
-        if (te == null) { return false; }
-
-        if (entityPlayer.isSneaking()) {
-            // Wrench + Sneak = Dismantle
-            if (StaticUtils.Inventory.isPlayerHoldingWrench(entityPlayer)) {
-                // Pass simulate == true on the client to prevent creation of "ghost" item stacks
-                dismantleBlock(entityPlayer, null, world, x, y, z, false, world.isRemote);
-                return true;
-            }
-            return false;
-        }
-
-        if(entityPlayer.inventory.getCurrentItem() == null) {
-            // Return stored power if bare hand
-            if (world.isRemote) {
-                entityPlayer.addChatComponentMessage(new ChatComponentText(((TileEntityKC2KineticCube)te).getEnergyStored(null) + " / " + ((TileEntityKC2KineticCube)te).getMaxEnergyStored() + " RF"));
-                return true;
-            }
+        if (te == null) {
             return false;
         } else {
-            ItemStack itemStack = entityPlayer.inventory.getCurrentItem();
+            world.markBlockForUpdate(x, y, z);
 
-            if (itemStack.getItem() instanceof KineticEnergyCore && world.isRemote) {
-                //entityPlayer.addChatComponentMessage(new ChatComponentText("Core contains " + KineticEnergyCore.getEnergyStored(itemStack) + " RF"));
-                KineticEnergyCore.extractEnergy(itemStack, ((TileEntityKC2KineticCube)te).)
+            if (entityPlayer.isSneaking()) {
+                // Wrench + Sneak = Dismantle
+                if (StaticUtils.Inventory.isPlayerHoldingWrench(entityPlayer)) {
+                    // Pass simulate == true on the client to prevent creation of "ghost" item stacks
+                    dismantleBlock(entityPlayer, null, world, x, y, z, false, world.isRemote);
+                    return true;
+                }
+                return false;
+            }
+
+            if (entityPlayer.inventory.getCurrentItem() == null) {
+                // Return stored power if bare hand
+                if (world.isRemote) {
+                    entityPlayer.addChatComponentMessage(new ChatComponentText(((TileEntityKC2Powered) te).getEnergyStored(null) + " / " + ((TileEntityKC2Powered)te).getMaxEnergyStored(null) + " RF"));
+                    return true;
+                }
+                return false;
             }
         }
 
