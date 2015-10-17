@@ -48,21 +48,19 @@ public class KinetiCraft2Items {
         */
 
         /* Empty Energy Cores */
-        /*
-        ItemStack woodenCoreEmpty = new ItemStack(woodenKineticEnergyCore, 1);
-        ItemStack stoneCoreEmpty = new ItemStack(stoneKineticEnergyCore, 1);
-        ItemStack ironCoreEmpty = new ItemStack(ironKineticEnergyCore, 1);
-        ItemStack goldCoreEmpty = new ItemStack(goldKineticEnergyCore, 1);
-        ItemStack diamondCoreEmpty = new ItemStack(diamondKineticEnergyCore, 1);
-        ItemStack enderCoreEmpty = new ItemStack(enderKineticEnergyCore, 1);
+        ItemStack woodenCoreEmpty = new ItemStack(kineticEnergyCore, 1, 0);
+        ItemStack stoneCoreEmpty = new ItemStack(kineticEnergyCore, 1, 1);
+        ItemStack ironCoreEmpty = new ItemStack(kineticEnergyCore, 1, 2);
+        ItemStack goldCoreEmpty = new ItemStack(kineticEnergyCore, 1, 3);
+        //ItemStack diamondCoreEmpty = new ItemStack(kineticEnergyCore, 1);
+        //ItemStack enderCoreEmpty = new ItemStack(kineticEnergyCore, 1);
 
-        woodenCoreEmpty.setItemDamage(woodenCoreEmpty.getMaxDamage());
-        stoneCoreEmpty.setItemDamage(stoneCoreEmpty.getMaxDamage());
-        ironCoreEmpty.setItemDamage(ironCoreEmpty.getMaxDamage());
-        goldCoreEmpty.setItemDamage(goldCoreEmpty.getMaxDamage());
-        diamondCoreEmpty.setItemDamage(diamondCoreEmpty.getMaxDamage());
-        enderCoreEmpty.setItemDamage(enderCoreEmpty.getMaxDamage());
-        */
+        //woodenCoreEmpty.setItemDamage(woodenCoreEmpty.getMaxDamage());
+        //stoneCoreEmpty.setItemDamage(stoneCoreEmpty.getMaxDamage());
+        //ironCoreEmpty.setItemDamage(ironCoreEmpty.getMaxDamage());
+        //goldCoreEmpty.setItemDamage(goldCoreEmpty.getMaxDamage());
+        //diamondCoreEmpty.setItemDamage(diamondCoreEmpty.getMaxDamage());
+        //enderCoreEmpty.setItemDamage(enderCoreEmpty.getMaxDamage());
 
 
         /* Register furnace smelts */
@@ -82,7 +80,6 @@ public class KinetiCraft2Items {
                 'K', KinetiCraft2Items.kineticIngot,
                 'C', Blocks.cobblestone
         }));
-        /*
         GameRegistry.addRecipe(woodenCoreEmpty, new Object[]{
                 "WWW",
                 "WGW",
@@ -112,6 +109,7 @@ public class KinetiCraft2Items {
                 'R', Items.redstone,
                 'K', kineticGear
         });
+        /*
         GameRegistry.addRecipe(diamondCoreEmpty, new Object[]{
                 "DRD",
                 "RGR",
