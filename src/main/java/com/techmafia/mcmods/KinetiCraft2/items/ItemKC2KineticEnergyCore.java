@@ -1,9 +1,9 @@
 package com.techmafia.mcmods.KinetiCraft2.items;
 
+import com.techmafia.mcmods.KinetiCraft2.items.base.ItemKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
-import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
 import com.techmafia.mcmods.KinetiCraft2.utility.NBTHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,7 +21,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import javax.swing.*;
 import java.util.List;
 
 /**
@@ -50,9 +49,9 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         subItemCapacity[3] = 100000;
 
         subItemMaxTransfer[0] = 100;
-        subItemMaxTransfer[1] = 500;
-        subItemMaxTransfer[2] = 1000;
-        subItemMaxTransfer[3] = 10000;
+        subItemMaxTransfer[1] = 1000;
+        subItemMaxTransfer[2] = 10000;
+        subItemMaxTransfer[3] = 50000;
 
         energyFromUsing[0] = 1;
         energyFromUsing[1] = 10;
@@ -90,14 +89,13 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         }
     }
 
-    /*
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
         return icons[damage][5];
     }
-    */
 
+    /*
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(ItemStack itemStack, int renderPass, EntityPlayer entityPlayer, ItemStack usingItemStack, int useRemaining) {
@@ -107,6 +105,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
 
         return icons[getDamage(itemStack)][level];
     }
+    */
 
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
@@ -223,7 +222,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         if (!world.isRemote) {
             player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF"));
 
-            player.addChatMessage(new ChatComponentText("Damage: " + getDamage(itemStack)));
+            //player.addChatMessage(new ChatComponentText("Damage: " + getDamage(itemStack)));
         }
 
 

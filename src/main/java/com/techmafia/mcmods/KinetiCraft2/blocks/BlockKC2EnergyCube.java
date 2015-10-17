@@ -87,7 +87,8 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
             return safeGetIcon(_icons, metadata, te.xCoord, te.yCoord, te.zCoord);
         }
 
-        return blockIcon;
+        //return blockIcon;
+        return this._icons[metadata];
     }
 
     @Override
@@ -99,11 +100,14 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
 
     @Override
     public IIcon getIcon(int side, int metadata) {
+        /*
         // This is used when rendering in-inventory. 4 == front here.
         if(side == 4) {
             return _icons[metadata];
         }
-        return this.blockIcon;
+        */
+        //return this.blockIcon;
+        return this._icons[metadata];
     }
 
     @Override
@@ -138,10 +142,10 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
         //list.add(this.getEnergyCubeItemStack());
 
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 0));
-        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
+        //list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
 
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 0));
-        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
+        //list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
     }
 
     @Override

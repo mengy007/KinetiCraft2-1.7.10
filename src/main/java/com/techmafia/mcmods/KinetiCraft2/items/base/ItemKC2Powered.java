@@ -1,4 +1,4 @@
-package com.techmafia.mcmods.KinetiCraft2.items;
+package com.techmafia.mcmods.KinetiCraft2.items.base;
 
 import cofh.api.energy.IEnergyContainerItem;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
