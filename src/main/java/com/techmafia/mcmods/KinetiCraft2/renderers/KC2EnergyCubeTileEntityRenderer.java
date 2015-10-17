@@ -2,8 +2,6 @@ package com.techmafia.mcmods.KinetiCraft2.renderers;
 
 import com.techmafia.mcmods.KinetiCraft2.items.KineticEnergyCore;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.KineticEnergyCubeTileEntity;
-import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
@@ -153,6 +151,8 @@ public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
 
     public void renderFront(TileEntity tileEntity) {
         Tessellator tes = Tessellator.instance;
+
+        /*
         int frontFace = ((KineticEnergyCubeTileEntity)tileEntity).getFrontFace();
 
         // Do translations and rotations
@@ -226,5 +226,6 @@ public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
             GL11.glRotatef(270, 0, 1, 0);
         }
         GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+        */
     }
 }

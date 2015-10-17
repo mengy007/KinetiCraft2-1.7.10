@@ -1,4 +1,4 @@
-package com.techmafia.mcmods.KinetiCraft2.blocks;
+package com.techmafia.mcmods.KinetiCraft2.blocks.base;
 
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
@@ -13,14 +13,14 @@ import net.minecraft.world.World;
 /**
  * Created by Meng on 7/27/2015.
  */
-public class KC2Block extends BlockContainer {
-    public KC2Block(Material material) {
+public class KC2BlockBase extends BlockContainer {
+    public KC2BlockBase(Material material) {
         super(material);
         this.setHardness(0.1f);
         this.setCreativeTab(CreativeTabKC2.KC2_TAB);
     }
 
-    public KC2Block(String blockName, Material material) {
+    public KC2BlockBase(String blockName, Material material) {
         super(material);
         this.setBlockName(blockName);
         this.setHardness(0.2f);

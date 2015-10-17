@@ -1,7 +1,6 @@
 package com.techmafia.mcmods.KinetiCraft2.net.messages;
 
 import com.techmafia.mcmods.KinetiCraft2.net.messages.base.WorldMessageClient;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.KineticEnergyCubeTileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -37,9 +36,11 @@ public class DeviceUpdateMessage extends WorldMessageClient {
     public static class Handler extends WorldMessageClient.Handler<DeviceUpdateMessage> {
         @Override
         public IMessage handleMessage(DeviceUpdateMessage message, MessageContext ctx, TileEntity te) {
+            /*
             if(te instanceof KineticEnergyCubeTileEntity) {
                 ((KineticEnergyCubeTileEntity)te).onReceiveUpdate(message.compound);
             }
+            */
             return null;
         }
     }

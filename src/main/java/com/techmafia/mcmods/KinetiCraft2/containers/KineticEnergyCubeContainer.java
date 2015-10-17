@@ -1,21 +1,25 @@
 package com.techmafia.mcmods.KinetiCraft2.containers;
 
 import com.techmafia.mcmods.KinetiCraft2.slots.KineticEnergyCoreSlot;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.KineticEnergyCubeTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by myang on 7/30/15.
  */
-public class KineticEnergyCubeContainer extends Container {
-    protected KineticEnergyCubeTileEntity _entity;
+public abstract class KineticEnergyCubeContainer extends Container {
+
+    public KineticEnergyCubeContainer(TileEntity entity, EntityPlayer player, int slots) {}
+
+    /*
+    protected EnergyCubeTileEntity _entity;
     protected int slots;
 
-    public KineticEnergyCubeContainer(KineticEnergyCubeTileEntity entity, EntityPlayer player, int slots) {
+    public KineticEnergyCubeContainer(EnergyCubeTileEntity entity, EntityPlayer player, int slots) {
         super();
         _entity = entity;
         this.slots = slots;
@@ -106,4 +110,5 @@ public class KineticEnergyCubeContainer extends Container {
 
         _entity.stopUpdatingPlayer(player);
     }
+    */
 }

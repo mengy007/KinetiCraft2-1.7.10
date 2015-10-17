@@ -258,12 +258,32 @@ public class KineticEnergyCore extends KC2Item {
     }
 
     public static int getEnergyStored(ItemStack itemStack) {
-        if (itemStack.stackTagCompound != null) {
-            return itemStack.stackTagCompound.getInteger("kineticEnergyStored");
-        } else {
+        if (itemStack.stackTagCompound == null) {
             itemStack.stackTagCompound = new NBTTagCompound();
+            itemStack.stackTagCompound.setInteger("kineticEnergyStored", 0);
 
             return 0;
+        } else {
+            if (itemStack.stackTagCompound.hasKey("kineticEnergyStored")) {
+                itemStack.stackTagCompound.setInteger("kineticEnergyStored", 0);
+            }
+            return itemStack.stackTagCompound.getInteger("kineticEnergyStored");
         }
+    }
+
+    public static int extractEnergy(ItemStack itemStack, int maxExtract) {
+        int energyExtracted = maxExtract;
+
+        if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("kineticEnergyStored")) {
+            if (energyExtracted > ((KineticEnergyCore)itemStack.getItem()).getMaxExtract()) {
+                energyExtracted = ((KineticEnergyCore)itemStack.getItem()).getMaxExtract();
+            }
+
+            if (energyExtracted > itemStack.stackTagCompound.getInteger("kineticEnergyStored")) {
+                energyExtracted = itemStack.stackTagCompound.getInteger("kineticEnergyStored");
+            }
+        }
+
+        return energyExtracted;
     }
 }
