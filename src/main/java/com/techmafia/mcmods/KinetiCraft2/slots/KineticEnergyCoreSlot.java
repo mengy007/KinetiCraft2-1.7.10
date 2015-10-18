@@ -1,6 +1,6 @@
 package com.techmafia.mcmods.KinetiCraft2.slots;
 
-import com.techmafia.mcmods.KinetiCraft2.items.KineticEnergyCore;
+import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticEnergyCore;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -15,6 +15,6 @@ public class KineticEnergyCoreSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack itemStack) {
-        return itemStack.getItem() instanceof KineticEnergyCore;
+        return itemStack.getItem() instanceof ItemKC2KineticEnergyCore;
     }
 }

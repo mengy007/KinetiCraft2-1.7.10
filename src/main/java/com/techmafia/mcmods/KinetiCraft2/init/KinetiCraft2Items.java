@@ -1,34 +1,23 @@
 package com.techmafia.mcmods.KinetiCraft2.init;
 
 import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticEnergyCore;
-import com.techmafia.mcmods.KinetiCraft2.items.KC2Item;
-import com.techmafia.mcmods.KinetiCraft2.items.KineticEnergyCore;
+import com.techmafia.mcmods.KinetiCraft2.items.base.ItemKC2Base;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
  * Created by Meng on 7/27/2015.
  */
 public class KinetiCraft2Items {
-    public static final KC2Item kineticDust                         = new KC2Item("kineticDust", 64, false);
-    public static final KC2Item kineticIngot                        = new KC2Item("kineticIngot", 64, false);
-    public static final KC2Item kineticGear                         = new KC2Item("kineticGear", 64, false);
-    public static final KC2Item kineticFrame                        = new KC2Item("kineticFrame", 64, false);
+    public static final ItemKC2Base kineticDust                         = new ItemKC2Base("kineticDust", 64, false);
+    public static final ItemKC2Base kineticIngot                        = new ItemKC2Base("kineticIngot", 64, false);
+    public static final ItemKC2Base kineticGear                         = new ItemKC2Base("kineticGear", 64, false);
+    public static final ItemKC2Base kineticFrame                        = new ItemKC2Base("kineticFrame", 64, false);
 
     public static final ItemKC2KineticEnergyCore kineticEnergyCore  = new ItemKC2KineticEnergyCore();
-
-    /*
-    public static final KineticEnergyCore woodenKineticEnergyCore   = new KineticEnergyCore("woodenKineticEnergyCore",  1,      1,      4,      2,  1000,   5,      1.0f);
-    public static final KineticEnergyCore stoneKineticEnergyCore    = new KineticEnergyCore("stoneKineticEnergyCore",   5,      10,     20,     4,  10000,  20,     1.5f);
-    public static final KineticEnergyCore ironKineticEnergyCore     = new KineticEnergyCore("ironKineticEnergyCore",    25,     50,     100,    8,  50000,  100,    2.0f);
-    public static final KineticEnergyCore goldKineticEnergyCore     = new KineticEnergyCore("goldKineticEnergyCore",    100,    200,    500,    10, 100000, 500,    4.0f);
-    public static final KineticEnergyCore diamondKineticEnergyCore  = new KineticEnergyCore("diamondKineticEnergyCore", 500,    200,    500,    50, 500000, 2500,   6.0f);
-    public static final KineticEnergyCore enderKineticEnergyCore    = new KineticEnergyCore("enderKineticEnergyCore",   1000,   500,   1000,    99, 500000, 10000,  6.0f);
-    */
 
     public static void init() {
         /* Register Items */
@@ -38,14 +27,6 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
         GameRegistry.registerItem(kineticEnergyCore, "kineticEnergyCore");
-        /*
-        GameRegistry.registerItem(woodenKineticEnergyCore, "woodenKineticEnergyCore");
-        GameRegistry.registerItem(stoneKineticEnergyCore, "stoneKineticEnergyCore");
-        GameRegistry.registerItem(ironKineticEnergyCore, "ironKineticEnergyCore");
-        GameRegistry.registerItem(goldKineticEnergyCore, "goldKineticEnergyCore");
-        GameRegistry.registerItem(diamondKineticEnergyCore, "diamondKineticEnergyCore");
-        GameRegistry.registerItem(enderKineticEnergyCore, "enderKineticEnergyCore");
-        */
 
         /* Empty Energy Cores */
         ItemStack woodenCoreEmpty = new ItemStack(kineticEnergyCore, 1, 0);
@@ -54,14 +35,6 @@ public class KinetiCraft2Items {
         ItemStack goldCoreEmpty = new ItemStack(kineticEnergyCore, 1, 3);
         //ItemStack diamondCoreEmpty = new ItemStack(kineticEnergyCore, 1);
         //ItemStack enderCoreEmpty = new ItemStack(kineticEnergyCore, 1);
-
-        //woodenCoreEmpty.setItemDamage(woodenCoreEmpty.getMaxDamage());
-        //stoneCoreEmpty.setItemDamage(stoneCoreEmpty.getMaxDamage());
-        //ironCoreEmpty.setItemDamage(ironCoreEmpty.getMaxDamage());
-        //goldCoreEmpty.setItemDamage(goldCoreEmpty.getMaxDamage());
-        //diamondCoreEmpty.setItemDamage(diamondCoreEmpty.getMaxDamage());
-        //enderCoreEmpty.setItemDamage(enderCoreEmpty.getMaxDamage());
-
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticDust, new ItemStack(kineticIngot, 1, 0), 0.1f);

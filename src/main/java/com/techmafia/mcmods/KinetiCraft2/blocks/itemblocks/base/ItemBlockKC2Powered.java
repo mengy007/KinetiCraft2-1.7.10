@@ -18,8 +18,6 @@ import java.util.List;
  * Created by Meng on 10/17/2015.
  */
 public class ItemBlockKC2Powered extends ItemBlock {
-    Block block;
-
     public ItemBlockKC2Powered(Block block) {
         super(block);
     }

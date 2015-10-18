@@ -1,10 +1,8 @@
 package com.techmafia.mcmods.KinetiCraft2.renderers;
 
-import com.techmafia.mcmods.KinetiCraft2.items.KineticEnergyCore;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;

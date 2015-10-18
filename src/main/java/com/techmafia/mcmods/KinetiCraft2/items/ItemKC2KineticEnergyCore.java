@@ -99,11 +99,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(ItemStack itemStack, int renderPass, EntityPlayer entityPlayer, ItemStack usingItemStack, int useRemaining) {
-        int level = (getEnergyStored(itemStack)) / (getMaxEnergyStored(itemStack) / 5);
-
-        //entityPlayer.addChatComponentMessage(new ChatComponentText(getDamage(itemStack) + "." + level + ": " + icons[getDamage(itemStack)][level].toString()));
-
-        return icons[getDamage(itemStack)][level];
+        return icons[getDamage(usingItemStack)][(getEnergyStored(usingItemStack)) / (getMaxEnergyStored(usingItemStack) / 5)];
     }
     */
 
@@ -159,8 +155,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         int energyStored = getEnergyStored(itemStack);
         int maxEnergy = getMaxEnergyStored(itemStack);
 
-        if ( ! world.isRemote)
-        {
+        if ( ! world.isRemote) {
             if (energyStored < maxEnergy) {
                 if (isMoving) {
                     //receiveEnergy(itemStack, energyFromMoving[itemStack.getItemDamage()], false);
@@ -170,7 +165,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
                     receiveEnergy(itemStack, energyFromJumping[itemStack.getItemDamage()], false);
                 }
             } else {
-                entity.playSound("random.orb", 1, 1);
+                //entity.playSound("random.orb", 1, 1);
             }
         }
 
@@ -211,18 +206,15 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
 
             NBTHelper.setInteger(itemStack, "overCharge", overCharge);
         } else {
-            int energyAdded = receiveEnergy(itemStack, energyFromUsing[itemStack.getItemDamage()], false);
+            receiveEnergy(itemStack, energyFromUsing[itemStack.getItemDamage()], false);
         }
 
         return false;
     }
 
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
-    {
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (!world.isRemote) {
             player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF"));
-
-            //player.addChatMessage(new ChatComponentText("Damage: " + getDamage(itemStack)));
         }
 
 
@@ -245,8 +237,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean par4)
-    {
+    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean par4) {
         super.addInformation(itemStack, entityPlayer, list, par4);
 
         list.add(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " KE");
