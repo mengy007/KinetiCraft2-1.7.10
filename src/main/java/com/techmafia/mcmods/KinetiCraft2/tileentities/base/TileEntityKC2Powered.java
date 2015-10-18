@@ -92,8 +92,14 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
     /* IEnergyHandler */
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-        if (!m_ReceivesEnergy) { return 0; }
-        return energyStorage.receiveEnergy(maxReceive, simulate);
+        // Only receive from Cores
+        if (from == null) {
+            if (!m_ReceivesEnergy) {
+                return 0;
+            }
+            return energyStorage.receiveEnergy(maxReceive, simulate);
+        }
+        return 0;
     }
 
     @Override
