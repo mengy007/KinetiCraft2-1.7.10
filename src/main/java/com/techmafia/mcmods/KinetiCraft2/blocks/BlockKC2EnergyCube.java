@@ -179,6 +179,38 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
         return false;
     }
 
+    // Copy energy level when broken
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
+        TileEntity te = world.getTileEntity(x, y, z);
+        ItemStack stack = new ItemStack(world.getBlock(x, y, z),1 , metadata);
+
+        if (te != null && te instanceof TileEntityKC2Powered) {
+            if (!stack.hasTagCompound()) {
+                stack.setTagCompound(new NBTTagCompound());
+            }
+            stack.getTagCompound().setInteger("Energy", ((TileEntityKC2Powered)te).getEnergyStored(null));
+            itemStacks.add(stack);
+        }
+
+        return itemStacks;
+    }
+
+    // Copy energy level when placed
+    /*
+    @Override
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
+        TileEntity te = world.getTileEntity(x, y, z);
+
+        if (te != null && te instanceof TileEntityKC2Powered) {
+            ((TileEntityKC2Powered)te).setEnergyStored();
+        }
+
+        return metadata;
+    }
+    */
+
     // IDismantleable
     @Override
     public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, NBTTagCompound blockTag, World world, int x, int y, int z, boolean returnDrops, boolean simulate) {

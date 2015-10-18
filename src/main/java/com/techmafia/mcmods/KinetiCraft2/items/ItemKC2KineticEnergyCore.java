@@ -244,9 +244,9 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean par4)
     {
-        super.addInformation(itemStack, player, list, par4);
+        super.addInformation(itemStack, entityPlayer, list, par4);
 
         list.add(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF");
     }

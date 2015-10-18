@@ -109,8 +109,11 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
 
     @Override
     public int getEnergyStored(ForgeDirection from) {
-
         return energyStorage.getEnergyStored();
+    }
+
+    public void setEnergyStored(int energyLevel) {
+        energyStorage.setEnergyStored(energyLevel);
     }
 
     @Override
