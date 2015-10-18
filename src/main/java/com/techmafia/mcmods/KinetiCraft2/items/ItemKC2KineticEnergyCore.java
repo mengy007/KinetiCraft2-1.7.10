@@ -238,7 +238,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
                 extractEnergy(itemStack, energyExtracted, false);
                 world.markBlockForUpdate(x, y, z);
 
-                entityPlayer.addChatComponentMessage(new ChatComponentText(energyExtracted + " RF extracted. " + getEnergyStored(itemStack) + " RF remains."));
+                entityPlayer.addChatComponentMessage(new ChatComponentText(energyExtracted + " KE extracted. " + getEnergyStored(itemStack) + " KE remains."));
             }
         }
         return false;
@@ -249,6 +249,6 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
     {
         super.addInformation(itemStack, entityPlayer, list, par4);
 
-        list.add(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF");
+        list.add(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " KE");
     }
 }
