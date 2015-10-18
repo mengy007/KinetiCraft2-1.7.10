@@ -163,7 +163,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         {
             if (energyStored < maxEnergy) {
                 if (isMoving) {
-                    receiveEnergy(itemStack, energyFromMoving[itemStack.getItemDamage()], false);
+                    //receiveEnergy(itemStack, energyFromMoving[itemStack.getItemDamage()], false);
                 }
 
                 if (isJumping) {
@@ -234,7 +234,8 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
             TileEntity te = world.getTileEntity(x, y, z);
 
             if (te != null && te instanceof TileEntityKC2Powered) {
-                int energyExtracted = ((TileEntityKC2Powered) te).receiveEnergy(null, extractEnergy(itemStack, subItemMaxTransfer[itemStack.getItemDamage()], false), false);
+                int energyExtracted = ((TileEntityKC2Powered) te).receiveEnergy(null, extractEnergy(itemStack, subItemMaxTransfer[itemStack.getItemDamage()], true), false);
+                extractEnergy(itemStack, energyExtracted, false);
                 world.markBlockForUpdate(x, y, z);
 
                 entityPlayer.addChatComponentMessage(new ChatComponentText(energyExtracted + " RF extracted. " + getEnergyStored(itemStack) + " RF remains."));

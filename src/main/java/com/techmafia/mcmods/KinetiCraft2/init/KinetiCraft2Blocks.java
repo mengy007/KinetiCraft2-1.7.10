@@ -27,7 +27,7 @@ public class KinetiCraft2Blocks {
                 Blocks.sand,
                 Blocks.dirt
         });
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticEnergyCube, 1), new Object[]{
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticEnergyCube, 1, 0), new Object[]{
                 "CGC",
                 " M ",
                 "C C",
@@ -35,8 +35,7 @@ public class KinetiCraft2Blocks {
                 'M', KinetiCraft2Items.kineticFrame,
                 'G', KinetiCraft2Items.kineticGear
         }));
-        /*
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(hardenedKineticEnergyCube, 1), new Object[]{
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticEnergyCube, 1, 1), new Object[]{
                 "CGC",
                 " M ",
                 "C C",
@@ -44,7 +43,6 @@ public class KinetiCraft2Blocks {
                 'M', KinetiCraft2Items.kineticFrame,
                 'G', KinetiCraft2Items.kineticGear
         }));
-        */
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticBlock, new ItemStack(KinetiCraft2Items.kineticIngot, 1, 0), 0.1f);

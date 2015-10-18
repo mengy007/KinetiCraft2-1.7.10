@@ -2,9 +2,11 @@ package com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.base;
 
 import cofh.api.energy.IEnergyContainerItem;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
+import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
@@ -16,12 +18,21 @@ import java.util.List;
  * Created by Meng on 10/17/2015.
  */
 public class ItemBlockKC2Powered extends ItemBlock {
+    Block block;
+
     public ItemBlockKC2Powered(Block block) {
         super(block);
     }
 
     public int getEnergyStored(ItemStack itemStack) {
-        return itemStack.getTagCompound().getInteger("Energy");
+        if (itemStack.hasTagCompound()) {
+            if (itemStack.getTagCompound().hasKey("Energy")) {
+                return itemStack.getTagCompound().getInteger("Energy");
+            } else {
+                ItemNBTHelper.setInteger(itemStack, "Energy", 0);
+            }
+        }
+        return 0;
     }
 
     public int getMaxEnergyStored(ItemStack itemStack) {
@@ -54,5 +65,20 @@ public class ItemBlockKC2Powered extends ItemBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack itemStack) {
+        return super.getUnlocalizedName(itemStack) + itemStack.getItemDamage();
     }
 }

@@ -39,8 +39,6 @@ import java.util.List;
  * Created by Meng on 7/31/2015.
  */
 public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable {
-    public static final int META_KINETIC_ENERGY_CUBE = 0;
-
     public static final String[] _subBlocks = {
             "woodenKineticEnergyCube",
             "stoneKineticEnergyCube"
@@ -133,19 +131,13 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
         }
     }
 
-    public ItemStack getEnergyCubeItemStack() {
-        return new ItemStack(this, 1, META_KINETIC_ENERGY_CUBE);
-    }
-
     @Override
-    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List list) {
-        //list.add(this.getEnergyCubeItemStack());
-
+    public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 0));
-        //list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
 
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 0));
-        //list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
     }
 
     @Override
@@ -197,19 +189,16 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
         return itemStacks;
     }
 
-    // Copy energy level when placed
-    /*
     @Override
     public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
         TileEntity te = world.getTileEntity(x, y, z);
 
         if (te != null && te instanceof TileEntityKC2Powered) {
-            ((TileEntityKC2Powered)te).setEnergyStored();
+
         }
 
         return metadata;
     }
-    */
 
     // IDismantleable
     @Override
