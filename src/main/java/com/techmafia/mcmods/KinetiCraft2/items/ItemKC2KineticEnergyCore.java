@@ -27,15 +27,15 @@ import java.util.List;
  * Created by Meng on 10/17/2015.
  */
 public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
-    private IIcon[][] icons = new IIcon[4][6];
+    private IIcon[][] icons = new IIcon[6][6];
 
-    private int[] subItemCapacity = new int[4];
-    private int[] subItemMaxTransfer = new int[4];
-    private int[] energyFromUsing = new int[4];
-    private int[] energyFromMoving = new int[4];
-    private int[] energyFromJumping = new int[4];
-    private int[] overChargeBuffer = new int[4];
-    private float[] damageFromOvercharge = new float[4];
+    private int[] subItemCapacity = new int[6];
+    private int[] subItemMaxTransfer = new int[6];
+    private int[] energyFromUsing = new int[6];
+    private int[] energyFromMoving = new int[6];
+    private int[] energyFromJumping = new int[6];
+    private int[] overChargeBuffer = new int[6];
+    private float[] damageFromOvercharge = new float[6];
     private float prevDistanceWalkedModified = 0;
 
     public ItemKC2KineticEnergyCore() {
@@ -47,36 +47,50 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         subItemCapacity[1] = 10000;
         subItemCapacity[2] = 50000;
         subItemCapacity[3] = 100000;
+        subItemCapacity[4] = 1000000;
+        subItemCapacity[5] = 20000000;
 
         subItemMaxTransfer[0] = 100;
         subItemMaxTransfer[1] = 1000;
-        subItemMaxTransfer[2] = 10000;
-        subItemMaxTransfer[3] = 50000;
+        subItemMaxTransfer[2] = 5000;
+        subItemMaxTransfer[3] = 10000;
+        subItemMaxTransfer[4] = 32000;
+        subItemMaxTransfer[5] = 128000;
 
         energyFromUsing[0] = 1;
         energyFromUsing[1] = 10;
         energyFromUsing[2] = 50;
         energyFromUsing[3] = 200;
+        energyFromUsing[4] = 1000;
+        energyFromUsing[5] = 10000;
 
         energyFromMoving[0] = 1;
         energyFromMoving[1] = 5;
         energyFromMoving[2] = 25;
         energyFromMoving[3] = 100;
+        energyFromMoving[4] = 500;
+        energyFromMoving[5] = 5000;
 
         energyFromJumping[0] = 1;
         energyFromJumping[1] = 10;
         energyFromJumping[2] = 50;
         energyFromJumping[3] = 200;
+        energyFromJumping[4] = 1000;
+        energyFromJumping[5] = 5000;
 
         overChargeBuffer[0] = 2;
         overChargeBuffer[1] = 4;
         overChargeBuffer[2] = 8;
         overChargeBuffer[3] = 10;
+        overChargeBuffer[4] = 20;
+        overChargeBuffer[5] = 100;
 
         damageFromOvercharge[0] = 1.0f;
         damageFromOvercharge[1] = 1.5f;
         damageFromOvercharge[2] = 2.0f;
         damageFromOvercharge[3] = 4.0f;
+        damageFromOvercharge[4] = 8.0f;
+        damageFromOvercharge[5] = 16.0f;
     }
 
     @SideOnly(Side.CLIENT)
@@ -118,6 +132,12 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
 
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 3), "Energy", 0));
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 3), "Energy", 100000));
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 4), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 4), "Energy", 1000000));
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 5), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 5), "Energy", 20000000));
     }
 
     @Override
@@ -198,10 +218,10 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
             if (overCharge >= overChargeBuffer[itemStack.getItemDamage()])
             {
                 // KaBOOM!
-                ((EntityPlayer)entityLivingBase).destroyCurrentEquippedItem();
+                //((EntityPlayer)entityLivingBase).destroyCurrentEquippedItem();
 
                 entityLivingBase.attackEntityFrom(DamageSource.generic, damageFromOvercharge[itemStack.getItemDamage()]);
-                entityLivingBase.playSound("random.explode", 1, 1);
+                //entityLivingBase.playSound("random.explode", 1, 1);
             }
 
             NBTHelper.setInteger(itemStack, "overCharge", overCharge);
@@ -216,8 +236,6 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
         if (!world.isRemote) {
             player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF"));
         }
-
-
         return itemStack;
     }
 

@@ -1,9 +1,14 @@
 package com.techmafia.mcmods.KinetiCraft2.proxy;
 
 import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2Blocks;
-import com.techmafia.mcmods.KinetiCraft2.renderers.HardenedKineticEnergyCubeTileEntityRenderer;
-import com.techmafia.mcmods.KinetiCraft2.renderers.KC2EnergyCubeTileEntityItemRenderer;
-import com.techmafia.mcmods.KinetiCraft2.renderers.KC2EnergyCubeTileEntityRenderer;
+import com.techmafia.mcmods.KinetiCraft2.renderers.TileEntityItemRendererKC2HardenedKineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.renderers.TileEntityItemRendererKC2KineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.renderers.TileEntityRendererKC2HardenedKineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.renderers.TileEntityRendererKC2KineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.renderers.base.TileEntityItemRendererKC2Base;
+import com.techmafia.mcmods.KinetiCraft2.renderers.base.TileEntityRendererKC2Base;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2HardenedKineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2KineticEnergyCube;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,12 +28,13 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerClientStuff() {
-        //TileEntitySpecialRenderer energyCubeSpecialRenderer = new KC2EnergyCubeTileEntityRenderer();
-        //TileEntitySpecialRenderer hardenedEnergyCubeSpecialRenderer = new HardenedKineticEnergyCubeTileEntityRenderer();
+        //TileEntitySpecialRenderer kineticEnergyCubeSpecialRenderer = new TileEntityRendererKC2KineticEnergyCube();
+        //TileEntitySpecialRenderer hardenedKineticEnergyCubeSpecialRenderer = new TileEntityRendererKC2HardenedKineticEnergyCube();
 
-        //ClientRegistry.bindTileEntitySpecialRenderer(KineticEnergyCubeTileEntity.class, energyCubeSpecialRenderer);
-        //ClientRegistry.bindTileEntitySpecialRenderer(HardenedKineticEnergyCubeTileEntity.class, hardenedEnergyCubeSpecialRenderer);
-        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(KinetiCraft2Blocks.kineticEnergyCube), new KC2EnergyCubeTileEntityItemRenderer(energyCubeSpecialRenderer, new KineticEnergyCubeTileEntity()));
-        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(KinetiCraft2Blocks.hardenedKineticEnergyCube), new KC2EnergyCubeTileEntityItemRenderer(energyCubeSpecialRenderer, new HardenedKineticEnergyCubeTileEntity()));
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKC2KineticEnergyCube.class, kineticEnergyCubeSpecialRenderer);
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKC2HardenedKineticEnergyCube.class, hardenedKineticEnergyCubeSpecialRenderer);
+
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(KinetiCraft2Blocks.kineticEnergyCube), new TileEntityItemRendererKC2Base(kineticEnergyCubeSpecialRenderer, new TileEntityKC2KineticEnergyCube()));
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(KinetiCraft2Blocks.kineticEnergyCube), new TileEntityItemRendererKC2Base(hardenedKineticEnergyCubeSpecialRenderer, new TileEntityKC2HardenedKineticEnergyCube()));
     }
 }

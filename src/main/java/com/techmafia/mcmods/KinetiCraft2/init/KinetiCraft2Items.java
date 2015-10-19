@@ -16,8 +16,7 @@ public class KinetiCraft2Items {
     public static final ItemKC2Base kineticIngot                        = new ItemKC2Base("kineticIngot", 64, false);
     public static final ItemKC2Base kineticGear                         = new ItemKC2Base("kineticGear", 64, false);
     public static final ItemKC2Base kineticFrame                        = new ItemKC2Base("kineticFrame", 64, false);
-
-    public static final ItemKC2KineticEnergyCore kineticEnergyCore  = new ItemKC2KineticEnergyCore();
+    public static final ItemKC2KineticEnergyCore kineticEnergyCore      = new ItemKC2KineticEnergyCore();
 
     public static void init() {
         /* Register Items */
@@ -33,8 +32,8 @@ public class KinetiCraft2Items {
         ItemStack stoneCoreEmpty = new ItemStack(kineticEnergyCore, 1, 1);
         ItemStack ironCoreEmpty = new ItemStack(kineticEnergyCore, 1, 2);
         ItemStack goldCoreEmpty = new ItemStack(kineticEnergyCore, 1, 3);
-        //ItemStack diamondCoreEmpty = new ItemStack(kineticEnergyCore, 1);
-        //ItemStack enderCoreEmpty = new ItemStack(kineticEnergyCore, 1);
+        ItemStack diamondCoreEmpty = new ItemStack(kineticEnergyCore, 1, 4);
+        ItemStack enderCoreEmpty = new ItemStack(kineticEnergyCore, 1, 5);
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticDust, new ItemStack(kineticIngot, 1, 0), 0.1f);
@@ -82,7 +81,6 @@ public class KinetiCraft2Items {
                 'R', Items.redstone,
                 'K', kineticGear
         });
-        /*
         GameRegistry.addRecipe(diamondCoreEmpty, new Object[]{
                 "DRD",
                 "RGR",
@@ -99,6 +97,5 @@ public class KinetiCraft2Items {
                 'R', Items.redstone,
                 'G', kineticGear
         });
-        */
     }
 }

@@ -5,8 +5,10 @@ import cofh.core.block.BlockCoFHBase;
 import cofh.core.util.CoreUtils;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2StoneKineticCube;
-import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2WoodenKineticCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2HardenedKineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2KineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2ReinforcedKineticEnergyCube;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2ResonantKineticEnergyCube;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Base;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
@@ -24,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -37,8 +40,10 @@ import java.util.List;
  */
 public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable {
     public static final String[] _subBlocks = {
-            "woodenKineticEnergyCube",
-            "stoneKineticEnergyCube"
+            "kineticEnergyCube",
+            "hardenedKineticEnergyCube",
+            "reinforcedKineticEnergyCube",
+            "resonantKineticEnergyCube"
     };
 
     private IIcon[] _icons = new IIcon[_subBlocks.length];
@@ -87,6 +92,16 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
     }
 
     @Override
+    public int getRenderType() {
+        return 0;
+    }
+
+    @Override
+    public int damageDropped(int metadata) {
+        return metadata;
+    }
+
+    @Override
     public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
         TileEntity te = blockAccess.getTileEntity(x, y, z);
         int metadata = blockAccess.getBlockMetadata(x, y, z);
@@ -120,9 +135,13 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
     public TileEntity createNewTileEntity(World world, int metadata) {
         switch(metadata) {
             case 0:
-                return new TileEntityKC2WoodenKineticCube();
+                return new TileEntityKC2KineticEnergyCube();
             case 1:
-                return new TileEntityKC2StoneKineticCube();
+                return new TileEntityKC2HardenedKineticEnergyCube();
+            case 2:
+                return new TileEntityKC2ReinforcedKineticEnergyCube();
+            case 3:
+                return new TileEntityKC2ResonantKineticEnergyCube();
             default:
                 throw new IllegalArgumentException("Unknown metadata for tile entity");
         }
@@ -131,10 +150,16 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
     @Override
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 0));
-        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 100000));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 400000));
 
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 0));
-        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 1000000));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 1), "Energy", 2000000));
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 2), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 2), "Energy", 20000000));
+
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 3), "Energy", 0));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 3), "Energy", 80000000));
     }
 
     @Override
@@ -158,7 +183,7 @@ public class BlockKC2EnergyCube extends BlockCoFHBase implements IDismantleable 
             if (entityPlayer.inventory.getCurrentItem() == null) {
                 // Return stored power if bare hand
                 if (world.isRemote) {
-                    entityPlayer.addChatComponentMessage(new ChatComponentText(((TileEntityKC2Powered) te).getEnergyStored(null) + " / " + ((TileEntityKC2Powered)te).getMaxEnergyStored(null) + " RF"));
+                    entityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + ((TileEntityKC2Powered) te).getEnergyStored(null) + " / " + ((TileEntityKC2Powered)te).getMaxEnergyStored(null) + " RF"));
                     return true;
                 }
                 return false;

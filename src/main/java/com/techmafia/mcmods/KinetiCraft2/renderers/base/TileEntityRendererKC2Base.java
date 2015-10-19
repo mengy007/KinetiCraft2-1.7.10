@@ -1,6 +1,8 @@
-package com.techmafia.mcmods.KinetiCraft2.renderers;
+package com.techmafia.mcmods.KinetiCraft2.renderers.base;
 
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
+import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -10,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by Meng on 7/31/2015.
  */
-public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
+public class TileEntityRendererKC2Base extends TileEntitySpecialRenderer {
     protected ResourceLocation textureFull = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/kineticEnergyCube.png");
     protected ResourceLocation textureFrame = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/kineticEnergyCubeFrame.png");
     protected ResourceLocation textureSide = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/kineticEnergyCubeSide.png");
@@ -18,6 +20,7 @@ public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
     protected ResourceLocation textureGray = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/gray.png");
     protected ResourceLocation[] textureStatus = new ResourceLocation[4];
     protected float pixel = 1f/16f;
+    int metadata;
 
     // 0:NORTH, 1:EAST, 2:SOUTH, 3:WEST
     public static final int NORTHFACE   = 0;
@@ -25,11 +28,12 @@ public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
     public static final int SOUTHFACE   = 2;
     public static final int WESTFACE    = 3;
 
-    public KC2EnergyCubeTileEntityRenderer() {
+    public TileEntityRendererKC2Base() {
         textureStatus[0] = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/red.png");
         textureStatus[1] = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/yellow.png");
         textureStatus[2] = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/orange.png");
         textureStatus[3] = new ResourceLocation(Reference.MOD_NAME + ":textures/blocks/green.png");
+        this.metadata = metadata;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class KC2EnergyCubeTileEntityRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslated(translationX, translationY, translationZ);
         renderFrame();
         renderSides(tileEntity);
-        renderFront(tileEntity);
+        //renderFront(tileEntity);
         GL11.glTranslated(-translationX, -translationY, -translationZ);
     }
 

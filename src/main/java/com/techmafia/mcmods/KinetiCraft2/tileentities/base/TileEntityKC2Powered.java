@@ -18,7 +18,7 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
     protected boolean m_ProvidesEnergy = true;
 
     // Internal power
-    private EnergyStorage energyStorage;
+    protected EnergyStorage energyStorage;
 
     public TileEntityKC2Powered() {
         super();
@@ -94,18 +94,29 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
         // Only receive from Cores
         if (from == null) {
+            int energyReceived;
+
             if (!m_ReceivesEnergy) {
                 return 0;
             }
-            return energyStorage.receiveEnergy(maxReceive, simulate);
+            energyReceived = energyStorage.receiveEnergy(maxReceive, simulate);
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+            return energyReceived;
         }
         return 0;
     }
 
     @Override
     public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+        int energyExtracted;
+
         if(!m_ProvidesEnergy) { return 0; }
-        return energyStorage.extractEnergy(maxExtract, simulate);
+
+        energyExtracted = energyStorage.extractEnergy(maxExtract, simulate);
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+        return energyExtracted;
     }
 
     @Override

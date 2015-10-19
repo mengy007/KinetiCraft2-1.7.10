@@ -3,12 +3,14 @@ package com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.base;
 import cofh.api.energy.IEnergyContainerItem;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
+import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
@@ -56,6 +58,8 @@ public class ItemBlockKC2Powered extends ItemBlock {
     {
         super.placeBlockAt(itemStack, entityPlayer, world, x, y, z, side, hitX, hitY, hitZ, metadata);
 
+        //entityPlayer.addChatComponentMessage(new ChatComponentText("Metadata: " + metadata));
+
         TileEntity te = world.getTileEntity(x, y, z);
 
         if (te != null && te instanceof TileEntityKC2Powered) {
@@ -63,6 +67,18 @@ public class ItemBlockKC2Powered extends ItemBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public int getMetadata(int metadata) {
+        return metadata;
+    }
+
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if (!world.isRemote) {
+            player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " RF"));
+        }
+        return itemStack;
     }
 
     @Override

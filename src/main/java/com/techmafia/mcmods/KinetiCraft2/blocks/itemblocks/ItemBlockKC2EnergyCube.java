@@ -12,13 +12,15 @@ import net.minecraft.world.World;
  * Created by Meng on 10/17/2015.
  */
 public class ItemBlockKC2EnergyCube extends ItemBlockKC2Powered {
-    int[] capacity = new int[2];
+    int[] capacity = new int[4];
 
     public ItemBlockKC2EnergyCube(Block block) {
         super(block);
 
-        capacity[0] = 100000;
-        capacity[1] = 1000000;
+        capacity[0] = 400000;
+        capacity[1] = 2000000;
+        capacity[2] = 20000000;
+        capacity[3] = 80000000;
     }
 
     @Override
