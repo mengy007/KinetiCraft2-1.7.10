@@ -2,6 +2,7 @@ package com.techmafia.mcmods.KinetiCraft2.items;
 
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.transport.IEnderItemHandler;
+import com.google.common.collect.Sets;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
@@ -18,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -26,11 +28,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by myang on 10/19/15.
  */
-public class ItemKC2KineticStonePickaxe extends ItemPickaxe implements IEnergyContainerItem {
+public class ItemKC2KineticStonePickaxe extends ItemTool implements IEnergyContainerItem {
+    private static final Set validBlocksToMine = Sets.newHashSet(new Block[]{Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail});
     private int capacity = 10000;
     private int maxReceive = 1000;
     private int maxExtract = 1000;
@@ -39,7 +43,7 @@ public class ItemKC2KineticStonePickaxe extends ItemPickaxe implements IEnergyCo
     private float overChargeDamage = 1.5f;
 
     public ItemKC2KineticStonePickaxe() {
-        super(Item.ToolMaterial.STONE);
+        super(2.0F, Item.ToolMaterial.STONE, validBlocksToMine);
         setUnlocalizedName("kc2KineticStonePickaxe");
         setTextureName("kc2KineticStonePickaxe");
         setCreativeTab(CreativeTabKC2.KC2_TAB);
@@ -112,7 +116,6 @@ public class ItemKC2KineticStonePickaxe extends ItemPickaxe implements IEnergyCo
         return itemStack;
     }
 
-    /*
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLivingBase, ItemStack itemStack) {
         if (getEnergyStored(itemStack) == getMaxEnergyStored(itemStack)) {
@@ -140,9 +143,8 @@ public class ItemKC2KineticStonePickaxe extends ItemPickaxe implements IEnergyCo
             receiveEnergy(itemStack, energyFromUsing, false);
         }
 
-        return false;
+        return super.onEntitySwing(entityLivingBase, itemStack);
     }
-    */
 
     public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (!world.isRemote) {
