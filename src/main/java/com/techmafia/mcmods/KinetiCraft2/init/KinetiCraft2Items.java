@@ -1,6 +1,7 @@
 package com.techmafia.mcmods.KinetiCraft2.init;
 
 import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticEnergyCore;
+import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticStonePickaxe;
 import com.techmafia.mcmods.KinetiCraft2.items.base.ItemKC2Base;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -17,6 +18,7 @@ public class KinetiCraft2Items {
     public static final ItemKC2Base kineticGear                         = new ItemKC2Base("kineticGear", 64, false);
     public static final ItemKC2Base kineticFrame                        = new ItemKC2Base("kineticFrame", 64, false);
     public static final ItemKC2KineticEnergyCore kineticEnergyCore      = new ItemKC2KineticEnergyCore();
+    public static final ItemKC2KineticStonePickaxe kineticStonePickaxe  = new ItemKC2KineticStonePickaxe();
 
     public static void init() {
         /* Register Items */
@@ -26,6 +28,8 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
         GameRegistry.registerItem(kineticEnergyCore, "kineticEnergyCore");
+
+        GameRegistry.registerItem(kineticStonePickaxe, "kineticStonePickaxe");
 
         /* Empty Energy Cores */
         ItemStack woodenCoreEmpty = new ItemStack(kineticEnergyCore, 1, 0);
