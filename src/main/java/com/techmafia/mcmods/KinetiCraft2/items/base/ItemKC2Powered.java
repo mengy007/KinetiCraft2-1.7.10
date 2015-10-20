@@ -78,7 +78,8 @@ public class ItemKC2Powered extends ItemKC2Base implements IEnergyContainerItem 
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
-        return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
+        return true;
+        //return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
     }
 
     @Override

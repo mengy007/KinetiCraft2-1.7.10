@@ -4,6 +4,7 @@ import com.techmafia.mcmods.KinetiCraft2.items.base.ItemKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
+import com.techmafia.mcmods.KinetiCraft2.utility.LogHelper;
 import com.techmafia.mcmods.KinetiCraft2.utility.NBTHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -106,16 +107,28 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
-        return icons[damage][5];
+        return icons[damage][0];
     }
 
-    /*
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(ItemStack itemStack, int renderPass, EntityPlayer entityPlayer, ItemStack usingItemStack, int useRemaining) {
-        return icons[getDamage(usingItemStack)][(getEnergyStored(usingItemStack)) / (getMaxEnergyStored(usingItemStack) / 5)];
+    public boolean requiresMultipleRenderPasses() {
+        return true;
     }
-    */
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getRenderPasses(int metadata) {
+        return 1;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(ItemStack itemStack, int renderPass) {
+        int energyLevel = Math.round(((float)getEnergyStored(itemStack) / (float)getMaxEnergyStored(itemStack)) * 5.0f);
+
+        return icons[getDamage(itemStack)][energyLevel];
+    }
 
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
