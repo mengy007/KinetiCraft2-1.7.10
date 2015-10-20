@@ -1,62 +1,59 @@
-[22:33:16] [Server thread/INFO]: Starting minecraft server version 1.7.10
-[22:33:24] [Server thread/INFO]: Loading properties
-[22:33:24] [Server thread/INFO]: Default game type: SURVIVAL
-[22:33:24] [Server thread/INFO]: Generating keypair
-[22:33:24] [Server thread/INFO]: Starting Minecraft server on *:25565
-[22:33:26] [Server thread/INFO]: Preparing level "world"
-[22:33:27] [Server thread/INFO]: Preparing start region for level 0
-[22:33:27] [Server thread/INFO]: Done (1.506s)! For help, type "help" or "?"
-[22:34:05] [User Authenticator #1/INFO]: UUID of player mengy007 is 0dd68c90-2234-4406-986e-3b375257fec0
-[22:34:05] [Server thread/INFO]: mengy007[/127.0.0.1:10134] logged in with entity id 342 at (-122.76714820505977, 67.0, 127.3029026574763)
-[22:34:05] [Server thread/INFO]: mengy007 joined the game
-[22:34:17] [Server thread/WARN]: Failed to handle packet for /127.0.0.1:10134
-java.lang.ArrayIndexOutOfBoundsException: 6
-	at com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityInventory.getStackInSlot(TileEntityInventory.java:149) ~[TileEntityInventory.class:?]
-	at net.minecraft.inventory.Slot.getStack(Slot.java:88) ~[Slot.class:?]
-	at net.minecraft.inventory.Container.getInventory(Container.java:67) ~[Container.class:?]
-	at net.minecraft.inventory.Container.addCraftingToCrafters(Container.java:53) ~[Container.class:?]
-	at cpw.mods.fml.common.network.internal.FMLNetworkHandler.openGui(FMLNetworkHandler.java:88) ~[FMLNetworkHandler.class:?]
-	at net.minecraft.entity.player.EntityPlayer.openGui(EntityPlayer.java:2501) ~[EntityPlayer.class:?]
-	at com.techmafia.mcmods.KinetiCraft2.blocks.KineticEnergyCube.onBlockActivated(KineticEnergyCube.java:120) ~[KineticEnergyCube.class:?]
-	at net.minecraft.server.management.ItemInWorldManager.activateBlockOrUseItem(ItemInWorldManager.java:409) ~[It[22:34:18] [Client thread/FATAL]: Reported exception thrown!
-net.minecraft.util.ReportedException: Rendering screen
-	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1168) ~[EntityRenderer.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1067) ~[Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:962) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:164) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_45]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_45]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_45]
-	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_45]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.11.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.11.jar:?]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(Unknown Source) [start/:?]
-	at GradleStart.main(Unknown Source) [start/:?]
-Caused by: java.lang.ArrayIndexOutOfBoundsException: 6
-	at com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityInventory.getStackInSlot(TileEntityInventory.java:149) ~[TileEntityInventory.class:?]
-	at net.minecraft.inventory.Slot.getStack(Slot.java:88) ~[Slot.class:?]
-	at net.minecraft.client.gui.inventory.GuiContainer.func_146977_a(GuiContainer.java:219) ~[GuiContainer.class:?]
-	at net.minecraft.client.gui.inventory.GuiContainer.drawScreen(GuiContainer.java:114) ~[GuiContainer.class:?]
-	at com.techmafia.mcmods.KinetiCraft2.gui.GuiKineticEnergyCube.drawScreen(GuiKineticEnergyCube.java:48) ~[GuiKineticEnergyCube.class:?]
-	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1137) ~[EntityRenderer.class:?]
-	... 11 more
-tServer$2.class:?]
-Caused by: java.lang.ArrayIndexOutOfBoundsException: 6
-	at com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityInventory.getStackInSlot(TileEntityInventory.java:149) ~[TileEntityInventory.class:?]
-	at net.minecraft.inventory.Slot.getStack(Slot.java:88) ~[Slot.class:?]
-	at net.minecraft.inventory.Container.detectAndSendChanges(Container.java:89) ~[Container.class:?]
-	at net.minecraft.entity.player.EntityPlayerMP.onUpdate(EntityPlayerMP.java:247) ~[EntityPlayerMP.class:?]
-	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2298) ~[World.class:?]
-	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:684) ~[WorldServer.class:?]
-	at net.minecraft.world.World.updateEntity(World.java:2258) ~[World.class:?]
-	at net.minecraft.world.World.updateEntities(World.java:2108) ~[World.class:?]
-	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:515) ~[WorldServer.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:703) ~[MinecraftServer.class:?]
-	... 4 more
-[22:34:18] [Server thread/ERROR]: This crash report has been saved to: C:\Users\Meng\IdeaProjects\KinetiCraft2\eclipse\.\crash-reports\crash-2015-08-01_22.34.18-server.txt
-[22:34:18] [Server thread/INFO]: Stopping server
-[22:34:18] [Server thread/INFO]: Saving players
-[22:34:18] [Server thread/INFO]: Saving worlds
-[22:34:18] [Server thread/INFO]: Saving chunks for level 'world'/Overworld
-[22:34:18] [Server thread/INFO]: Saving chunks for level 'world'/Nether
-[22:34:18] [Server thread/INFO]: Saving chunks for level 'world'/The End
+[12:06:29] [main/INFO]: Setting user: Player118
+[12:06:30] [Client thread/INFO]: LWJGL Version: 2.9.1
+[12:06:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:06:38] [Sound Library Loader/INFO]: Sound engine started
+[12:06:39] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:06:39] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:06:40] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:06:40] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:06:40] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:06:41] [Sound Library Loader/INFO]: Sound engine started
+[12:07:30] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:07:30] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:07:31] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:07:31] [Sound Library Loader/INFO]: Sound engine started
+[12:07:32] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:07:32] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:07:32] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:07:33] [Sound Library Loader/INFO]: Sound engine started
+[12:07:36] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[12:07:36] [Server thread/INFO]: Generating keypair
+[12:07:36] [Server thread/INFO]: Preparing start region for level 0
+[12:07:36] [Server thread/INFO]: Changing view distance to 12, from 10
+[12:07:37] [Server thread/INFO]: Player118[local:E:b8eab75e] logged in with entity id 246 at (-73.52950632730025, 4.0, -309.8999086362086)
+[12:07:37] [Server thread/INFO]: Player118 joined the game
+[12:07:45] [Client thread/INFO]: [CHAT] §a400 / 50000 RF
+[12:07:49] [Client thread/INFO]: [CHAT] §a450 / 50000 RF
+[12:07:51] [Client thread/INFO]: [CHAT] §a2000 / 100000 RF
+[12:07:53] [Client thread/INFO]: [CHAT] §a2250 / 100000 RF
+[12:07:55] [Client thread/INFO]: [CHAT] 2250 KE extracted. 0 KE remains.
+[12:07:56] [Client thread/INFO]: [CHAT] 0 KE extracted. 0 KE remains.
+[12:07:57] [Client thread/INFO]: [CHAT] 450 KE extracted. 0 KE remains.
+[12:07:58] [Client thread/INFO]: [CHAT] 0 KE extracted. 0 KE remains.
+[12:07:59] [Server thread/INFO]: Player118 has just earned the achievement [Taking Inventory]
+[12:07:59] [Client thread/INFO]: [CHAT] Player118 has just earned the achievement [Taking Inventory]
+[12:08:05] [Server thread/INFO]: [Player118: Set own game mode to Creative Mode]
+[12:08:05] [Client thread/INFO]: [CHAT] Your game mode has been updated
+[12:09:08] [Server thread/INFO]: [Player118: Set own game mode to Survival Mode]
+[12:09:08] [Client thread/INFO]: [CHAT] Your game mode has been updated
+[12:09:11] [Client thread/INFO]: [CHAT] §a250 / 100000 RF
+[12:09:24] [Server thread/INFO]: [Player118: Given 9999 experience to Player118]
+[12:09:24] [Client thread/INFO]: [CHAT] Given 9999 experience to Player118
+[12:09:45] [Client thread/INFO]: [CHAT] §a500 / 100000 RF
+[12:09:46] [Client thread/INFO]: [CHAT] 500 KE extracted. 0 KE remains.
+[12:09:46] [Client thread/INFO]: [CHAT] 0 KE extracted. 0 KE remains.
+[12:10:13] [Server thread/INFO]: Saving and pausing game...
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:10:16] [Server thread/INFO]: Saving and pausing game...
+[12:10:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:10:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:10:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:10:17] [Server thread/INFO]: Stopping server
+[12:10:17] [Server thread/INFO]: Saving players
+[12:10:17] [Server thread/INFO]: Saving worlds
+[12:10:17] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:10:17] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:10:17] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:10:24] [Client thread/INFO]: Stopping!

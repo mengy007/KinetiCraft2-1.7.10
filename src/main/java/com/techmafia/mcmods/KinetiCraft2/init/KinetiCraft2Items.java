@@ -1,6 +1,7 @@
 package com.techmafia.mcmods.KinetiCraft2.init;
 
 import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticEnergyCore;
+import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticIronPickaxe;
 import com.techmafia.mcmods.KinetiCraft2.items.ItemKC2KineticStonePickaxe;
 import com.techmafia.mcmods.KinetiCraft2.items.base.ItemKC2Base;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -19,6 +20,7 @@ public class KinetiCraft2Items {
     public static final ItemKC2Base kineticFrame                        = new ItemKC2Base("kineticFrame", 64, false);
     public static final ItemKC2KineticEnergyCore kineticEnergyCore      = new ItemKC2KineticEnergyCore();
     public static final ItemKC2KineticStonePickaxe kineticStonePickaxe  = new ItemKC2KineticStonePickaxe();
+    public static final ItemKC2KineticIronPickaxe kineticIronPickaxe    = new ItemKC2KineticIronPickaxe();
 
     public static void init() {
         /* Register Items */
@@ -30,6 +32,8 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticEnergyCore, "kineticEnergyCore");
 
         GameRegistry.registerItem(kineticStonePickaxe, "kineticStonePickaxe");
+        GameRegistry.registerItem(kineticIronPickaxe, "kineticIronPickaxe");
+
 
         /* Empty Energy Cores */
         ItemStack woodenCoreEmpty = new ItemStack(kineticEnergyCore, 1, 0);
@@ -101,5 +105,23 @@ public class KinetiCraft2Items {
                 'R', Items.redstone,
                 'G', kineticGear
         });
+
+        // Tools
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticStonePickaxe, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.stone_pickaxe
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticIronPickaxe, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.iron_pickaxe
+        }));
     }
 }

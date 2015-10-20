@@ -16,3 +16,5 @@ tile.kc2EnergyCube1.name=Hardened Kinetic Energy Cube
 tile.kc2EnergyCube2.name=Reinforced Kinetic Energy Cube
 tile.kc2EnergyCube3.name=Resonant Kinetic Energy Cube
 tile.kc2KineticGenerator0.name=Kinetic Generator
+item.kc2KineticStonePickaxe.name=Kinetic Stone Pickaxe
+item.kc2KineticIronPickaxe.name=Kinetic Iron Pickaxe
