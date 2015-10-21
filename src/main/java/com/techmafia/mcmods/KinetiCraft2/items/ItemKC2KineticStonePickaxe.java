@@ -12,7 +12,7 @@ public class ItemKC2KineticStonePickaxe extends ItemKC2KineticPickaxe {
         setUnlocalizedName("kc2KineticStonePickaxe");
         setTextureName("kc2KineticStonePickaxe");
 
-        capacity = 50000;
+        capacity = 10000;
         maxReceive = 1000;
         maxExtract = 1000;
         energyFromUsing = 50;

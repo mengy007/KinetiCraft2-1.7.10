@@ -1,7 +1,6 @@
 package com.techmafia.mcmods.KinetiCraft2.items.base;
 
 import cofh.api.energy.IEnergyContainerItem;
-import com.google.common.collect.Sets;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
@@ -9,15 +8,11 @@ import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
 import com.techmafia.mcmods.KinetiCraft2.utility.NBTHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.ItemSword;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -26,12 +21,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by myang on 10/20/15.
  */
-public class ItemKC2KineticPickaxe extends ItemPickaxe implements IEnergyContainerItem {
+public class ItemKC2KineticSword extends ItemSword implements IEnergyContainerItem {
     protected int capacity = 10000;
     protected int maxReceive = 1000;
     protected int maxExtract = 1000;
@@ -39,10 +33,10 @@ public class ItemKC2KineticPickaxe extends ItemPickaxe implements IEnergyContain
     protected int overChargeBuffer = 4;
     protected float overChargeDamage = 1.5f;
 
-    public ItemKC2KineticPickaxe(ToolMaterial toolMaterial) {
+    public ItemKC2KineticSword(ToolMaterial toolMaterial) {
         super(toolMaterial);
-        setUnlocalizedName("kc2KineticPickaxe");
-        setTextureName("kc2KineticPickaxe");
+        setUnlocalizedName("kc2KineticSword");
+        setTextureName("kc2KineticSword");
         setCreativeTab(CreativeTabKC2.KC2_TAB);
     }
 
@@ -113,36 +107,6 @@ public class ItemKC2KineticPickaxe extends ItemPickaxe implements IEnergyContain
         return itemStack;
     }
 
-    @Override
-    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block block, int x, int y, int z, EntityLivingBase entityLivingBase) {
-        if (getEnergyStored(itemStack) == getMaxEnergyStored(itemStack)) {
-            // Handle over charging
-            if ( ! NBTHelper.hasTag(itemStack, "overCharge"))
-            {
-                NBTHelper.setInteger(itemStack, "overCharge", 0);
-            }
-
-            int overCharge = NBTHelper.getInt(itemStack, "overCharge");
-
-            overCharge++;
-
-            if (overCharge >= overChargeBuffer)
-            {
-                // KaBOOM!
-                //((EntityPlayer)entityLivingBase).destroyCurrentEquippedItem();
-
-                entityLivingBase.attackEntityFrom(DamageSource.generic, overChargeDamage);
-                //entityLivingBase.playSound("random.explode", 1, 1);
-            }
-
-            NBTHelper.setInteger(itemStack, "overCharge", overCharge);
-        } else {
-            receiveEnergy(itemStack, energyFromUsing, false);
-        }
-
-        return super.onBlockDestroyed(itemStack, world, block, x, y, z, entityLivingBase);
-    }
-
     public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (!world.isRemote) {
             TileEntity te = world.getTileEntity(x, y, z);
@@ -164,5 +128,36 @@ public class ItemKC2KineticPickaxe extends ItemPickaxe implements IEnergyContain
         super.addInformation(itemStack, entityPlayer, list, par4);
 
         list.add(EnumChatFormatting.GREEN + "" + getEnergyStored(itemStack) + " / " + getMaxEnergyStored(itemStack) + " KE");
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack itemStack, EntityLivingBase player, EntityLivingBase entityHit)
+    {
+        if (getEnergyStored(itemStack) == getMaxEnergyStored(itemStack)) {
+            // Handle over charging
+            if ( ! NBTHelper.hasTag(itemStack, "overCharge"))
+            {
+                NBTHelper.setInteger(itemStack, "overCharge", 0);
+            }
+
+            int overCharge = NBTHelper.getInt(itemStack, "overCharge");
+
+            overCharge++;
+
+            if (overCharge >= overChargeBuffer)
+            {
+                // KaBOOM!
+                //((EntityPlayer)entityLivingBase).destroyCurrentEquippedItem();
+
+                player.attackEntityFrom(DamageSource.generic, overChargeDamage);
+                //entityLivingBase.playSound("random.explode", 1, 1);
+            }
+
+            NBTHelper.setInteger(itemStack, "overCharge", overCharge);
+        } else {
+            receiveEnergy(itemStack, energyFromUsing, false);
+        }
+
+        return super.hitEntity(itemStack, player, entityHit);
     }
 }

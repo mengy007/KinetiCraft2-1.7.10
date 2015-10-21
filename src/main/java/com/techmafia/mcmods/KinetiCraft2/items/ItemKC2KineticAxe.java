@@ -1,7 +1,6 @@
-package com.techmafia.mcmods.KinetiCraft2.items.base;
+package com.techmafia.mcmods.KinetiCraft2.items;
 
 import cofh.api.energy.IEnergyContainerItem;
-import com.google.common.collect.Sets;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
@@ -13,11 +12,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -26,23 +22,29 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by myang on 10/20/15.
  */
-public class ItemKC2KineticPickaxe extends ItemPickaxe implements IEnergyContainerItem {
-    protected int capacity = 10000;
-    protected int maxReceive = 1000;
-    protected int maxExtract = 1000;
-    protected int energyFromUsing = 10;
-    protected int overChargeBuffer = 4;
-    protected float overChargeDamage = 1.5f;
+public class ItemKC2KineticAxe extends ItemAxe implements IEnergyContainerItem {
+    private int capacity = 10000;
+    private int maxReceive = 1000;
+    private int maxExtract = 1000;
+    private int energyFromUsing = 10;
+    private int overChargeBuffer = 4;
+    private float overChargeDamage = 1.5f;
 
-    public ItemKC2KineticPickaxe(ToolMaterial toolMaterial) {
+    public ItemKC2KineticAxe(ToolMaterial toolMaterial, String axeName, int capacity, int maxTransfer, int energyFromUsing, int overChargeBuffer, float overChargeDamage) {
         super(toolMaterial);
-        setUnlocalizedName("kc2KineticPickaxe");
-        setTextureName("kc2KineticPickaxe");
+
+        this.capacity = capacity;
+        this.maxReceive = maxTransfer;
+        this.maxExtract = maxTransfer;
+        this.energyFromUsing = energyFromUsing;
+        this.overChargeBuffer = overChargeBuffer;
+        this.overChargeDamage = overChargeDamage;
+        setUnlocalizedName(axeName);
+        setTextureName(axeName);
         setCreativeTab(CreativeTabKC2.KC2_TAB);
     }
 
