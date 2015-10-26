@@ -1,54 +1,33 @@
-[18:16:11] [main/INFO]: Setting user: Player843
-[18:16:12] [Client thread/INFO]: LWJGL Version: 2.9.1
-[18:16:17] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
-[18:16:20] [Sound Library Loader/INFO]: Sound engine started
-[18:16:20] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
-[18:16:20] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:16:21] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
-[18:16:21] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
-[18:16:22] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:16:22] [Sound Library Loader/INFO]: Sound engine started
-[18:16:32] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
-[18:16:32] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
-[18:16:32] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:16:33] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
-[18:16:33] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
-[18:16:33] [Sound Library Loader/INFO]: Sound engine started
-[18:16:33] [Client thread/INFO]: Created: 512x512 textures/items-atlas
-[18:16:34] [Sound Library Loader/INFO]: Sound engine started
-[18:16:37] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[18:16:37] [Server thread/INFO]: Generating keypair
-[18:16:37] [Server thread/INFO]: Preparing start region for level 0
-[18:16:38] [Server thread/INFO]: Changing view distance to 12, from 10
-[18:16:38] [Server thread/INFO]: Player843[local:E:6fb6083d] logged in with entity id 311 at (-69.53698906295597, 4.0, -308.3340121336089)
-[18:16:38] [Server thread/INFO]: Player843 joined the game
-[18:16:44] [Server thread/INFO]: [Player843: Set own game mode to Creative Mode]
-[18:16:44] [Client thread/INFO]: [CHAT] Your game mode has been updated
-[18:16:46] [Server thread/INFO]: [Player843: Set the time to 1000]
-[18:16:46] [Client thread/INFO]: [CHAT] Set the time to 1000
-[18:16:46] [Server thread/INFO]: Player843 has just earned the achievement [Taking Inventory]
-[18:16:47] [Client thread/INFO]: [CHAT] Player843 has just earned the achievement [Taking Inventory]
-[18:17:14] [Server thread/INFO]: [Player843: Set own game mode to Survival Mode]
-[18:17:14] [Client thread/INFO]: [CHAT] Your game mode has been updated
-[18:17:16] [Client thread/INFO]: [CHAT] §a0 / 50000 RF
-[18:17:18] [Client thread/INFO]: [CHAT] §a250 / 50000 RF
-[18:17:18] [Server thread/INFO]: Player843 has just earned the achievement [Getting Wood]
-[18:17:18] [Client thread/INFO]: [CHAT] Player843 has just earned the achievement [Getting Wood]
-[18:17:20] [Client thread/INFO]: [CHAT] §a500 / 50000 RF
-[18:17:24] [Client thread/INFO]: [CHAT] 0 KE extracted. 500 KE remains.
-[18:17:25] [Client thread/INFO]: [CHAT] 500 KE extracted. 0 KE remains.
-[18:17:27] [Client thread/INFO]: [CHAT] 0 KE extracted. 0 KE remains.
-[18:17:27] [Client thread/INFO]: [CHAT] 0 KE extracted. 0 KE remains.
-[18:17:28] [Client thread/INFO]: [CHAT] §a299130 / 2000000 RF
-[18:17:29] [Client thread/INFO]: [CHAT] §a299130 / 2000000 RF
-[18:17:30] [Server thread/INFO]: Saving and pausing game...
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:17:30] [Server thread/INFO]: Stopping server
-[18:17:30] [Server thread/INFO]: Saving players
-[18:17:30] [Server thread/INFO]: Saving worlds
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:17:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:17:32] [Client thread/INFO]: Stopping!
+[12:09:43] [main/INFO]: Setting user: Player434
+[12:09:45] [Client thread/INFO]: LWJGL Version: 2.9.1
+[12:09:52] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:09:55] [Sound Library Loader/INFO]: Sound engine started
+[12:09:55] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:09:56] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:09:57] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:09:57] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:09:57] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:09:58] [Sound Library Loader/INFO]: Sound engine started
+[12:10:08] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[12:10:08] [Server thread/INFO]: Generating keypair
+[12:10:08] [Server thread/INFO]: Preparing start region for level 0
+[12:10:09] [Server thread/INFO]: Changing view distance to 12, from 10
+[12:10:09] [Server thread/INFO]: Player434[local:E:8eca0031] logged in with entity id 237 at (-68.33709595834985, 4.0, -306.9891450149647)
+[12:10:09] [Server thread/INFO]: Player434 joined the game
+[12:10:13] [Server thread/INFO]: Saving and pausing game...
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:10:13] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:10:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Not Enough Items, FMLFileResourcePack:KinetiCraft2, FMLFileResourcePack:CoFH Core, FMLFileResourcePack:Thermal Foundation, FMLFileResourcePack:BC Builders, FMLFileResourcePack:BC Transport, FMLFileResourcePack:BC Energy, FMLFileResourcePack:BC Silicon, FMLFileResourcePack:BC Robotics, FMLFileResourcePack:BuildCraft, FMLFileResourcePack:BC Factory
+[12:10:20] [Client thread/INFO]: Created: 512x512 textures/blocks-atlas
+[12:10:20] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[12:10:21] [Sound Library Loader/INFO]: Sound engine started
+[12:10:23] [Server thread/INFO]: Player434 has just earned the achievement [Taking Inventory]
+[12:10:23] [Client thread/INFO]: [CHAT] Player434 has just earned the achievement [Taking Inventory]
+[12:11:30] [Client thread/INFO]: Stopping!
+[12:11:30] [Server thread/INFO]: Stopping server
+[12:11:30] [Server thread/INFO]: Saving players
+[12:11:30] [Server thread/INFO]: Saving worlds
+[12:11:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:11:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:11:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End

@@ -38,6 +38,12 @@ public class KinetiCraft2Items {
     public static final ItemKC2KineticAxe kineticGoldenAxe                  = new ItemKC2KineticAxe(Item.ToolMaterial.GOLD, "kc2KineticGoldenAxe", 100000, 10000, 1000, 10, 4.0f);
     public static final ItemKC2KineticAxe kineticDiamondAxe                 = new ItemKC2KineticAxe(Item.ToolMaterial.EMERALD, "kc2KineticDiamondAxe", 1000000, 32000, 5000, 20, 8.0f);
 
+    public static final ItemKC2KineticShovel kineticWoodenShovel            = new ItemKC2KineticShovel(Item.ToolMaterial.WOOD, "kc2KineticWoodenShovel", 1000, 100, 5, 2, 1.0f);
+    public static final ItemKC2KineticShovel kineticStoneShovel             = new ItemKC2KineticShovel(Item.ToolMaterial.STONE, "kc2KineticStoneShovel", 10000, 1000, 50, 4, 1.5f);
+    public static final ItemKC2KineticShovel kineticIronShovel              = new ItemKC2KineticShovel(Item.ToolMaterial.IRON, "kc2KineticIronShovel", 50000, 5000, 250, 8, 2.0f);
+    public static final ItemKC2KineticShovel kineticGoldenShovel            = new ItemKC2KineticShovel(Item.ToolMaterial.GOLD, "kc2KineticGoldenShovel", 100000, 10000, 1000, 10, 4.0f);
+    public static final ItemKC2KineticShovel kineticDiamondShovel           = new ItemKC2KineticShovel(Item.ToolMaterial.EMERALD, "kc2KineticDiamondShovel", 1000000, 32000, 5000, 20, 8.0f);
+
     public static void init() {
         /* Register Items */
         GameRegistry.registerItem(kineticDust, "kineticDust");
@@ -45,25 +51,36 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticGear, "kineticGear");
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
+        // Cores
         GameRegistry.registerItem(kineticEnergyCore, "kineticEnergyCore");
 
+        // Pickaxes
         GameRegistry.registerItem(kineticWoodenPickaxe, "kineticWoodenPickaxe");
         GameRegistry.registerItem(kineticStonePickaxe, "kineticStonePickaxe");
         GameRegistry.registerItem(kineticIronPickaxe, "kineticIronPickaxe");
         GameRegistry.registerItem(kineticGoldenPickaxe, "kineticGoldenPickaxe");
         GameRegistry.registerItem(kineticDiamondPickaxe, "kineticDiamondPickaxe");
 
+        // Swords
         GameRegistry.registerItem(kineticWoodenSword, "kineticWoodenSword");
         GameRegistry.registerItem(kineticStoneSword, "kineticStoneSword");
         GameRegistry.registerItem(kineticIronSword, "kineticIronSword");
         GameRegistry.registerItem(kineticGoldenSword, "kineticGoldenSword");
         GameRegistry.registerItem(kineticDiamondSword, "kineticDiamondSword");
 
+        // Axes
         GameRegistry.registerItem(kineticWoodenAxe, "kineticWoodenAxe");
         GameRegistry.registerItem(kineticStoneAxe, "kineticStoneAxe");
         GameRegistry.registerItem(kineticIronAxe, "kineticIronAxe");
         GameRegistry.registerItem(kineticGoldenAxe, "kineticGoldenAxe");
         GameRegistry.registerItem(kineticDiamondAxe, "kineticDiamondAxe");
+
+        // Shovels
+        GameRegistry.registerItem(kineticWoodenShovel, "kineticWoodenShovel");
+        GameRegistry.registerItem(kineticStoneShovel, "kineticStoneShovel");
+        GameRegistry.registerItem(kineticIronShovel, "kineticIronShovel");
+        GameRegistry.registerItem(kineticGoldenShovel, "kineticGoldenShovel");
+        GameRegistry.registerItem(kineticDiamondShovel, "kineticDiamondShovel");
 
         /* Empty Energy Cores */
         ItemStack woodenCoreEmpty = new ItemStack(kineticEnergyCore, 1, 0);
@@ -262,5 +279,46 @@ public class KinetiCraft2Items {
                 'T', Items.diamond_axe
         }));
 
+        // Shovels
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticWoodenShovel, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.wooden_shovel
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticStoneShovel, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.stone_shovel
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticIronShovel, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.iron_shovel
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticGoldenShovel, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.golden_shovel
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticDiamondShovel, 1), new Object[]{
+                "IGI",
+                "GTG",
+                "IGI",
+                'G', kineticGear,
+                'I', kineticIngot,
+                'T', Items.diamond_shovel
+        }));
     }
 }

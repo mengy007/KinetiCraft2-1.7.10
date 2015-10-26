@@ -1,16 +1,16 @@
 [
-{
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid": "Mengy007_KinetiCraft2",
+        "name": "KinetiCraft2",
+        "description": "Adds a kinetic way of generating and storing RF power.",
+        "version": "[1.7.10]0.3a.004",
+        "mcversion": "${mcversion}",
+        "url": "http://www.tech-mafia.com",
+        "updateUrl": "",
+        "authorList": [ "mengy007" ],
+        "credits": "Code & design by mengy007",
+        "requiredMods": [ "Forge" ],
+        "dependencies": [ "MinecraftForge,ThermalExpansion" ],
+        "useDependencyInformation": "true"
+    }
 ]
