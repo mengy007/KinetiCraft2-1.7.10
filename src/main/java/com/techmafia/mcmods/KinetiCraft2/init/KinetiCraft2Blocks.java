@@ -4,6 +4,7 @@ import com.techmafia.mcmods.KinetiCraft2.blocks.*;
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2EnergyCube;
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2KineticBlock;
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2KineticGenerator;
+import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2Treadmill;
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.base.ItemBlockKC2Powered;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
@@ -20,6 +21,7 @@ public class KinetiCraft2Blocks {
     public static final BlockKC2KineticBlock kineticBlock = new BlockKC2KineticBlock();
     public static final BlockKC2EnergyCube kineticEnergyCube = new BlockKC2EnergyCube(Material.rock);
     public static final BlockKC2KineticGenerator kineticGenerator = new BlockKC2KineticGenerator(Material.rock);
+    public static final BlockKC2Treadmill kc2treadmill = new BlockKC2Treadmill();
 
     public static void init() {
         Object ingotLead = getOreWithVanillaFallback("stone", "ingotLead");
@@ -31,6 +33,7 @@ public class KinetiCraft2Blocks {
         GameRegistry.registerBlock(kineticBlock, ItemBlockKC2KineticBlock.class, "kineticBlock");
         GameRegistry.registerBlock(kineticEnergyCube, ItemBlockKC2EnergyCube.class, "kineticEnergyCube");
         GameRegistry.registerBlock(kineticGenerator, ItemBlockKC2KineticGenerator.class, "kineticGenerator");
+        GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
 
         /* Crafting Recipes */
         GameRegistry.addShapelessRecipe(new ItemStack(kineticBlock, 2), new Object[]{

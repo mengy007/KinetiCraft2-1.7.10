@@ -64,14 +64,20 @@ public abstract class TileEntityKC2Powered extends TileEntityKC2Base implements 
         // Distribute power
         if (!worldObj.isRemote && isActive()) {
             for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
-                TileEntity adjacentTile = worldObj.getTileEntity(xCoord + direction.offsetX, yCoord + direction.offsetY, zCoord + direction.offsetZ);
+                if (canTransmitPower(direction)) {
+                    TileEntity adjacentTile = worldObj.getTileEntity(xCoord + direction.offsetX, yCoord + direction.offsetY, zCoord + direction.offsetZ);
 
-                if (adjacentTile instanceof IEnergyReceiver) {
-                    IEnergyReceiver handler = (IEnergyReceiver)adjacentTile;
-                    energyStorage.extractEnergy(handler.receiveEnergy(direction.getOpposite(), energyStorage.extractEnergy(energyStorage.getMaxExtract(), true), false), false);
+                    if (adjacentTile instanceof IEnergyReceiver) {
+                        IEnergyReceiver handler = (IEnergyReceiver) adjacentTile;
+                        energyStorage.extractEnergy(handler.receiveEnergy(direction.getOpposite(), energyStorage.extractEnergy(energyStorage.getMaxExtract(), true), false), false);
+                    }
                 }
             }
         }
+    }
+
+    public boolean canTransmitPower(ForgeDirection dir) {
+        return true;
     }
 
     // TileEntityKC2Base methods
