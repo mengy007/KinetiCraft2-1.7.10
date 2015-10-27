@@ -2,14 +2,17 @@ package com.techmafia.mcmods.KinetiCraft2.blocks;
 
 import com.techmafia.mcmods.KinetiCraft2.blocks.base.BlockKC2Base;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
+import com.techmafia.mcmods.KinetiCraft2.entities.EntityKC2Treadmill;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2Treadmill;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
@@ -53,9 +56,10 @@ public class BlockKC2Treadmill extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
         TileEntity te = world.getTileEntity(x, y, z);
         if (te != null && !world.isRemote) {
-            entityPlayer.addChatComponentMessage(new ChatComponentText("Hop on"));
-
-            entityPlayer.setPositionAndUpdate(x+0.5, y+1, z+0.5);
+            EntityKC2Treadmill treadmillEntity = new EntityKC2Treadmill(world);
+            treadmillEntity.setPosition(x+0.5f, y, z+0.5f);
+            world.spawnEntityInWorld(treadmillEntity);
+            entityPlayer.mountEntity(treadmillEntity);
         }
 
         return false;
