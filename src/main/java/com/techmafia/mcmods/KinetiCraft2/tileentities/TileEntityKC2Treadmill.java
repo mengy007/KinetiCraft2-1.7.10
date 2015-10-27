@@ -1,6 +1,7 @@
 package com.techmafia.mcmods.KinetiCraft2.tileentities;
 
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -14,6 +15,7 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
 
     int treadmillSpeed = 0;
     boolean isMounted = false;
+    EntityLiving mountedPlayer;
 
     public TileEntityKC2Treadmill() {
         super();
