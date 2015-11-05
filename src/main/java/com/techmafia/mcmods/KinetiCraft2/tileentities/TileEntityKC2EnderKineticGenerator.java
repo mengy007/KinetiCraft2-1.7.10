@@ -26,4 +26,8 @@ public class TileEntityKC2EnderKineticGenerator extends TileEntityKC2Powered {
         if(!m_ProvidesEnergy || (from == ForgeDirection.UP)) { return 0; }
         return energyStorage.extractEnergy(maxExtract, simulate);
     }
+
+    public boolean isFull() {
+        return (getEnergyStored(null) == getMaxEnergyStored());
+    }
 }

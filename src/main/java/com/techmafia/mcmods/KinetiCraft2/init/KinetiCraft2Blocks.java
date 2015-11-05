@@ -94,11 +94,19 @@ public class KinetiCraft2Blocks {
         }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticGenerator, 1, 0), new Object[]{
                 "IGI",
+                "GFG",
+                "IGI",
+                'F', KinetiCraft2Items.kineticFrame,
+                'I', KinetiCraft2Items.enderKineticIngot,
+                'G', KinetiCraft2Items.enderKineticGear
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticEnergyPylon, 1, 0), new Object[]{
+                "IGI",
                 "GPG",
                 "IGI",
                 'P', Items.ender_pearl,
                 'I', KinetiCraft2Items.enderKineticIngot,
-                'G', KinetiCraft2Items.enderKineticGear
+                'G', Blocks.glass_pane
         }));
 
         /* Register furnace smelts */
