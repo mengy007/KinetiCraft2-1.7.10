@@ -12,13 +12,21 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
     private static final int powerOutputMultiplier = 2;
     private static final int acceleration = 1;
     private static final int maxSpeed = 20;
+    protected int entityId;
 
     int treadmillSpeed = 0;
     boolean isMounted = false;
-    EntityLiving mountedPlayer;
 
     public TileEntityKC2Treadmill() {
         super();
+    }
+
+    public int getEntityId() {
+        return this.entityId;
+    }
+
+    public void setEntityId(int entityId) {
+        this.entityId = entityId;
     }
 
     @Override
@@ -27,6 +35,7 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
 
         nbt.setInteger("treadmillSpeed", treadmillSpeed);
         nbt.setBoolean("isMounted", isMounted);
+        nbt.setInteger("entityId", entityId);
     }
 
     @Override
@@ -35,6 +44,7 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
 
         treadmillSpeed = nbt.getInteger("treadmillSpeed");
         isMounted = nbt.getBoolean("isMounted");
+        entityId = nbt.getInteger("entityId");
     }
 
     @Override

@@ -43,6 +43,20 @@ public class ItemKC2Powered extends ItemKC2Base implements IEnergyContainerItem 
 
     @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
+        return 0;
+        /*
+        int energy = ItemNBTHelper.getInteger(container, "Energy", 0);
+        int energyReceived = Math.min(getCapacity(container) - energy, Math.min(getMaxReceive(container), maxReceive));
+
+        if (!simulate) {
+            energy += energyReceived;
+            ItemNBTHelper.setInteger(container, "Energy", energy);
+        }
+        return energyReceived;
+        */
+    }
+
+    public int receiveKineticEnergy(ItemStack container, int maxReceive, boolean simulate) {
         int energy = ItemNBTHelper.getInteger(container, "Energy", 0);
         int energyReceived = Math.min(getCapacity(container) - energy, Math.min(getMaxReceive(container), maxReceive));
 

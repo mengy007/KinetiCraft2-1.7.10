@@ -40,9 +40,12 @@ public class BlockKC2Treadmill extends BlockContainer {
         blockIcon = iconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1));
     }
 
-    /**
-     * Required override
-     **/
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
+    }
+
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
         return new TileEntityKC2Treadmill();
@@ -54,14 +57,46 @@ public class BlockKC2Treadmill extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
-        TileEntity te = world.getTileEntity(x, y, z);
-        if (te != null && !world.isRemote) {
-            EntityKC2Treadmill treadmillEntity = new EntityKC2Treadmill(world);
-            treadmillEntity.setPosition(x+0.5f, y, z+0.5f);
-            world.spawnEntityInWorld(treadmillEntity);
-            entityPlayer.mountEntity(treadmillEntity);
+
+        if (!world.isRemote) {
+            EntityKC2Treadmill entityTreadmill = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
+            world.spawnEntityInWorld(entityTreadmill);
+            ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(entityTreadmill.getEntityId());
+
+            if (entityTreadmill != null) {
+                entityTreadmill.interactFirst(entityPlayer);
+            }
+
+            return true;
         }
+
+        /*
+        if (canSit(world, x, y, z, entityPlayer, side, hitX, hitY, hitZ) && !world.isRemote) {
+            EntityKC2Treadmill entityTreadmill = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
+            world.spawnEntityInWorld(entityTreadmill);
+            ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(entityTreadmill.getEntityId());
+
+            if (entityTreadmill != null) {
+                entityTreadmill.interactFirst(entityPlayer);
+            }
+
+            return true;
+        }
+        */
 
         return false;
     }
+
+    public boolean canSit(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        return true;
+    }
+
+    /*
+    @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        EntityKC2Treadmill e = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
+        world.spawnEntityInWorld(e);
+        ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(e.getEntityId());
+    }
+    */
 }

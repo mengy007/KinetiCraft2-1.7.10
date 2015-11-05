@@ -33,7 +33,7 @@ public class KinetiCraft2Blocks {
         GameRegistry.registerBlock(kineticBlock, ItemBlockKC2KineticBlock.class, "kineticBlock");
         GameRegistry.registerBlock(kineticEnergyCube, ItemBlockKC2EnergyCube.class, "kineticEnergyCube");
         GameRegistry.registerBlock(kineticGenerator, ItemBlockKC2KineticGenerator.class, "kineticGenerator");
-        GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
+        //GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
 
         /* Crafting Recipes */
         GameRegistry.addShapelessRecipe(new ItemStack(kineticBlock, 2), new Object[]{

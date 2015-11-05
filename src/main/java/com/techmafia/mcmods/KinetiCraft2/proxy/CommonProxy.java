@@ -1,6 +1,5 @@
 package com.techmafia.mcmods.KinetiCraft2.proxy;
 
-import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2Entities;
 import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2TileEntities;
 import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2Blocks;
 import com.techmafia.mcmods.KinetiCraft2.init.KinetiCraft2Items;
@@ -22,9 +21,6 @@ public class CommonProxy {
 
         /* Tile Entities */
         KinetiCraft2TileEntities.init();
-
-        /* Entities */
-        KinetiCraft2Entities.init();
     }
 
     public void registerClientStuff() {}

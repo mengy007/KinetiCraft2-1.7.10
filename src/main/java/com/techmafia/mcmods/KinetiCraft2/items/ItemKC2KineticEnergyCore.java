@@ -195,7 +195,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
                 }
 
                 if (isJumping) {
-                    receiveEnergy(itemStack, energyFromJumping[itemStack.getItemDamage()], false);
+                    receiveKineticEnergy(itemStack, energyFromJumping[itemStack.getItemDamage()], false);
                 }
             } else {
                 //entity.playSound("random.orb", 1, 1);
@@ -239,7 +239,7 @@ public class ItemKC2KineticEnergyCore extends ItemKC2Powered {
 
             NBTHelper.setInteger(itemStack, "overCharge", overCharge);
         } else {
-            receiveEnergy(itemStack, energyFromUsing[itemStack.getItemDamage()], false);
+            receiveKineticEnergy(itemStack, energyFromUsing[itemStack.getItemDamage()], false);
         }
 
         return false;
