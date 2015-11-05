@@ -16,6 +16,7 @@ public class KinetiCraft2Items {
     public static final ItemKC2Base kineticDust                             = new ItemKC2Base("kineticDust", 64, false);
     public static final ItemKC2Base enderKineticDust                        = new ItemKC2Base("enderKineticDust", 64, false);
     public static final ItemKC2Base kineticIngot                            = new ItemKC2Base("kineticIngot", 64, false);
+    public static final ItemKC2Base enderKineticIngot                       = new ItemKC2Base("enderKineticIngot", 64, false);
     public static final ItemKC2Base kineticGear                             = new ItemKC2Base("kineticGear", 64, false);
     public static final ItemKC2Base kineticFrame                            = new ItemKC2Base("kineticFrame", 64, false);
 
@@ -50,6 +51,7 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticDust, "kineticDust");
         GameRegistry.registerItem(enderKineticDust, "enderKineticDust");
         GameRegistry.registerItem(kineticIngot, "kineticIngot");
+        GameRegistry.registerItem(enderKineticIngot, "enderKineticIngot");
         GameRegistry.registerItem(kineticGear, "kineticGear");
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
@@ -94,6 +96,7 @@ public class KinetiCraft2Items {
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticDust, new ItemStack(kineticIngot, 1, 0), 0.1f);
+        GameRegistry.addSmelting(enderKineticDust, new ItemStack(enderKineticIngot, 1, 0), 0.1f);
 
         /* Register Item Recipes */
         GameRegistry.addRecipe(new ItemStack(kineticGear, 1), new Object[]{

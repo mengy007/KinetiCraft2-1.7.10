@@ -1,10 +1,7 @@
 package com.techmafia.mcmods.KinetiCraft2.init;
 
 import com.techmafia.mcmods.KinetiCraft2.blocks.*;
-import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2EnergyCube;
-import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2KineticBlock;
-import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2KineticGenerator;
-import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.ItemBlockKC2Treadmill;
+import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.*;
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.base.ItemBlockKC2Powered;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
@@ -19,6 +16,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class KinetiCraft2Blocks {
     public static final BlockKC2KineticBlock kineticBlock = new BlockKC2KineticBlock();
+    public static final BlockKC2EnderKineticBlock enderKineticBlock = new BlockKC2EnderKineticBlock();
+
     public static final BlockKC2EnergyCube kineticEnergyCube = new BlockKC2EnergyCube(Material.rock);
     public static final BlockKC2KineticGenerator kineticGenerator = new BlockKC2KineticGenerator(Material.rock);
     public static final BlockKC2Treadmill kc2treadmill = new BlockKC2Treadmill();
@@ -31,6 +30,7 @@ public class KinetiCraft2Blocks {
 
         /* Register Blocks */
         GameRegistry.registerBlock(kineticBlock, ItemBlockKC2KineticBlock.class, "kineticBlock");
+        GameRegistry.registerBlock(enderKineticBlock, ItemBlockKC2EnderKineticBlock.class, "enderKineticBlock");
         GameRegistry.registerBlock(kineticEnergyCube, ItemBlockKC2EnergyCube.class, "kineticEnergyCube");
         GameRegistry.registerBlock(kineticGenerator, ItemBlockKC2KineticGenerator.class, "kineticGenerator");
         //GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
@@ -40,6 +40,15 @@ public class KinetiCraft2Blocks {
                 Blocks.sand,
                 Blocks.dirt
         });
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticBlock, 2), new Object[]{
+                "SDS",
+                "EPE",
+                "SDS",
+                'S', Blocks.sand,
+                'D', Blocks.dirt,
+                'P', Items.ender_pearl,
+                'E', Blocks.end_stone
+        }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticEnergyCube, 1, 0), new Object[]{
                 "CGC",
                 " M ",
@@ -82,6 +91,7 @@ public class KinetiCraft2Blocks {
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticBlock, new ItemStack(KinetiCraft2Items.kineticIngot, 1, 0), 0.1f);
+        GameRegistry.addSmelting(enderKineticBlock, new ItemStack(KinetiCraft2Items.enderKineticIngot, 1, 0), 0.1f);
     }
 
     public static Object getOreWithVanillaFallback(Object vanillaFallback, String... moddedOre) {
