@@ -18,6 +18,7 @@ public class KinetiCraft2Items {
     public static final ItemKC2Base kineticIngot                            = new ItemKC2Base("kineticIngot", 64, false);
     public static final ItemKC2Base enderKineticIngot                       = new ItemKC2Base("enderKineticIngot", 64, false);
     public static final ItemKC2Base kineticGear                             = new ItemKC2Base("kineticGear", 64, false);
+    public static final ItemKC2Base enderKineticGear                        = new ItemKC2Base("enderKineticGear", 64, false);
     public static final ItemKC2Base kineticFrame                            = new ItemKC2Base("kineticFrame", 64, false);
 
     public static final ItemKC2KineticEnergyCore kineticEnergyCore          = new ItemKC2KineticEnergyCore();
@@ -53,6 +54,7 @@ public class KinetiCraft2Items {
         GameRegistry.registerItem(kineticIngot, "kineticIngot");
         GameRegistry.registerItem(enderKineticIngot, "enderKineticIngot");
         GameRegistry.registerItem(kineticGear, "kineticGear");
+        GameRegistry.registerItem(enderKineticGear, "enderKineticGear");
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
         // Cores
@@ -104,6 +106,13 @@ public class KinetiCraft2Items {
                 "KKK",
                 " K ",
                 'K', KinetiCraft2Items.kineticIngot
+        });
+        GameRegistry.addRecipe(new ItemStack(enderKineticGear, 1), new Object[]{
+                " E ",
+                "EKE",
+                " E ",
+                'K', KinetiCraft2Items.kineticIngot,
+                'E', KinetiCraft2Items.enderKineticIngot
         });
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kineticFrame, 1), new Object[]{
                 "CKC",

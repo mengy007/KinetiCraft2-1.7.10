@@ -14,6 +14,8 @@ public class KinetiCraft2TileEntities {
         GameRegistry.registerTileEntity(TileEntityKC2ReinforcedKineticEnergyCube.class, "reinforcedKineticEnergyCube");
         GameRegistry.registerTileEntity(TileEntityKC2ResonantKineticEnergyCube.class, "resonantKineticEnergyCube");
         GameRegistry.registerTileEntity(TileEntityKC2KineticGenerator.class, "kineticGenerator");
+        GameRegistry.registerTileEntity(TileEntityKC2EnderKineticGenerator.class, "enderKineticGenerator");
+        GameRegistry.registerTileEntity(TileEntityKC2EnderKineticEnergyPylon.class, "enderKineticEndergyPylon");
         //GameRegistry.registerTileEntity(TileEntityKC2Treadmill.class, "kc2treadmill");
 
         LogHelper.info("Done registering tile entities!");

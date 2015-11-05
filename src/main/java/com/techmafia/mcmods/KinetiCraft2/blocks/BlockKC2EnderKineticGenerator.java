@@ -4,6 +4,7 @@ import cofh.core.block.BlockCoFHBase;
 import cofh.core.util.CoreUtils;
 import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2EnderKineticGenerator;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2KineticGenerator;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import com.techmafia.mcmods.KinetiCraft2.utility.ItemNBTHelper;
@@ -12,9 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,21 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Meng on 10/18/2015.
+ * Created by myang on 11/5/15.
  */
-public class BlockKC2KineticGenerator extends BlockCoFHBase {
-    public int powerFromWalkedOn = 5;
-    public int powerFromJumpedOn = 10;
-
+public class BlockKC2EnderKineticGenerator extends BlockCoFHBase {
     IIcon sideIcon;
     IIcon topIcon;
 
-    public BlockKC2KineticGenerator(Material material) {
+    public BlockKC2EnderKineticGenerator(Material material) {
         super(material);
         setCreativeTab(CreativeTabKC2.KC2_TAB);
         setStepSound(soundTypeMetal);
         setHardness(0.1f);
-        setBlockName("kc2KineticGenerator");
+        setBlockName("kc2EnderKineticGenerator");
         setBlockTextureName(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1));
     }
 
@@ -67,13 +63,13 @@ public class BlockKC2KineticGenerator extends BlockCoFHBase {
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityKC2KineticGenerator();
+        return new TileEntityKC2EnderKineticGenerator();
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
         list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 0));
-        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 50000));
+        list.add(ItemNBTHelper.setInteger(new ItemStack(item, 1, 0), "Energy", 10000000));
     }
 
     @Override
@@ -91,34 +87,6 @@ public class BlockKC2KineticGenerator extends BlockCoFHBase {
             }
         }
         return false;
-    }
-
-    /**
-     * Called whenever an entity is walking on top of this block. Args: world, x, y, z, entity
-     */
-    public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-        if ( ! world.isRemote && entity instanceof EntityPlayerMP) {
-            TileEntity te = world.getTileEntity(x, y, z);
-
-            if (te != null && te instanceof TileEntityKC2Powered) {
-                ((TileEntityKC2Powered)te).receiveEnergy(null, powerFromWalkedOn, false);
-                world.markBlockForUpdate(x, y, z);
-            }
-        }
-    }
-
-    /**
-     * Block's chance to react to an entity falling on it.
-     */
-    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float speed) {
-        if ( ! world.isRemote && entity instanceof EntityPlayerMP) {
-            TileEntity te = world.getTileEntity(x, y, z);
-
-            if (te != null && te instanceof TileEntityKC2Powered) {
-                ((TileEntityKC2Powered)te).receiveEnergy(null, powerFromJumpedOn, false);
-                world.markBlockForUpdate(x, y, z);
-            }
-        }
     }
 
     // Copy energy level when broken

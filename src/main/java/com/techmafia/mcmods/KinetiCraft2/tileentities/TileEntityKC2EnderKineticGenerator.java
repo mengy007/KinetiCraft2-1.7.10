@@ -4,16 +4,16 @@ import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * Created by Meng on 10/18/2015.
+ * Created by myang on 11/5/15.
  */
-public class TileEntityKC2KineticGenerator extends TileEntityKC2Powered {
-    public TileEntityKC2KineticGenerator() {
+public class TileEntityKC2EnderKineticGenerator extends TileEntityKC2Powered {
+    public TileEntityKC2EnderKineticGenerator() {
         super();
     }
 
     @Override
     public int getMaxEnergyStored() {
-        return 50000;
+        return 10000000;
     }
 
     @Override
