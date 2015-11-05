@@ -40,7 +40,7 @@ public class KinetiCraft2Blocks {
                 Blocks.sand,
                 Blocks.dirt
         });
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticBlock, 2), new Object[]{
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticBlock, 4), new Object[]{
                 "SDS",
                 "EPE",
                 "SDS",
