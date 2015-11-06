@@ -14,10 +14,13 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class KinetiCraft2Items {
     public static final ItemKC2Base kineticDust                             = new ItemKC2Base("kineticDust", 64, false);
+    public static final ItemKC2Base netherKineticDust                       = new ItemKC2Base("netherKineticDust", 64, false);
     public static final ItemKC2Base enderKineticDust                        = new ItemKC2Base("enderKineticDust", 64, false);
     public static final ItemKC2Base kineticIngot                            = new ItemKC2Base("kineticIngot", 64, false);
+    public static final ItemKC2Base netherKineticIngot                      = new ItemKC2Base("netherKineticIngot", 64, false);
     public static final ItemKC2Base enderKineticIngot                       = new ItemKC2Base("enderKineticIngot", 64, false);
     public static final ItemKC2Base kineticGear                             = new ItemKC2Base("kineticGear", 64, false);
+    public static final ItemKC2Base netherKineticGear                       = new ItemKC2Base("netherKineticGear", 64, false);
     public static final ItemKC2Base enderKineticGear                        = new ItemKC2Base("enderKineticGear", 64, false);
     public static final ItemKC2Base kineticFrame                            = new ItemKC2Base("kineticFrame", 64, false);
 
@@ -50,10 +53,13 @@ public class KinetiCraft2Items {
     public static void init() {
         /* Register Items */
         GameRegistry.registerItem(kineticDust, "kineticDust");
+        GameRegistry.registerItem(netherKineticDust, "netherKineticDust");
         GameRegistry.registerItem(enderKineticDust, "enderKineticDust");
         GameRegistry.registerItem(kineticIngot, "kineticIngot");
+        GameRegistry.registerItem(netherKineticIngot, "netherKineticIngot");
         GameRegistry.registerItem(enderKineticIngot, "enderKineticIngot");
         GameRegistry.registerItem(kineticGear, "kineticGear");
+        GameRegistry.registerItem(netherKineticGear, "netherKineticGear");
         GameRegistry.registerItem(enderKineticGear, "enderKineticGear");
         GameRegistry.registerItem(kineticFrame, "kineticFrame");
 
@@ -98,7 +104,8 @@ public class KinetiCraft2Items {
 
         /* Register furnace smelts */
         GameRegistry.addSmelting(kineticDust, new ItemStack(kineticIngot, 1, 0), 0.1f);
-        GameRegistry.addSmelting(enderKineticDust, new ItemStack(enderKineticIngot, 1, 0), 0.1f);
+        GameRegistry.addSmelting(netherKineticDust, new ItemStack(netherKineticIngot, 1, 0), 0.2f);
+        GameRegistry.addSmelting(enderKineticDust, new ItemStack(enderKineticIngot, 1, 0), 0.4f);
 
         /* Register Item Recipes */
         GameRegistry.addRecipe(new ItemStack(kineticGear, 1), new Object[]{
@@ -106,6 +113,13 @@ public class KinetiCraft2Items {
                 "KKK",
                 " K ",
                 'K', KinetiCraft2Items.kineticIngot
+        });
+        GameRegistry.addRecipe(new ItemStack(netherKineticGear, 1), new Object[]{
+                " N ",
+                "NKN",
+                " N ",
+                'K', KinetiCraft2Items.kineticIngot,
+                'N', KinetiCraft2Items.netherKineticIngot
         });
         GameRegistry.addRecipe(new ItemStack(enderKineticGear, 1), new Object[]{
                 " E ",

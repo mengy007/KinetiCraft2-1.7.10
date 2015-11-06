@@ -16,11 +16,13 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class KinetiCraft2Blocks {
     public static final BlockKC2KineticBlock kineticBlock = new BlockKC2KineticBlock();
+    public static final BlockKC2NetherKineticBlock netherKineticBlock = new BlockKC2NetherKineticBlock();
     public static final BlockKC2EnderKineticBlock enderKineticBlock = new BlockKC2EnderKineticBlock();
 
     public static final BlockKC2EnergyCube kineticEnergyCube = new BlockKC2EnergyCube(Material.rock);
     public static final BlockKC2KineticGenerator kineticGenerator = new BlockKC2KineticGenerator(Material.rock);
     public static final BlockKC2EnderKineticGenerator enderKineticGenerator = new BlockKC2EnderKineticGenerator(Material.rock);
+    public static final BlockKC2ThermalKineticGenerator thermalKineticGenerator = new BlockKC2ThermalKineticGenerator(Material.rock);
     public static final BlockKC2EnderKineticEnergyPylon enderKineticEnergyPylon = new BlockKC2EnderKineticEnergyPylon(Material.rock);
     public static final BlockKC2Treadmill kc2treadmill = new BlockKC2Treadmill();
 
@@ -32,10 +34,12 @@ public class KinetiCraft2Blocks {
 
         /* Register Blocks */
         GameRegistry.registerBlock(kineticBlock, ItemBlockKC2KineticBlock.class, "kineticBlock");
-        GameRegistry.registerBlock(enderKineticBlock, ItemBlockKC2EnderKineticBlock.class, "enderKineticBlock");
+        GameRegistry.registerBlock(netherKineticBlock, ItemBlockKC2KineticBlock.class, "netherKineticBlock");
+        GameRegistry.registerBlock(enderKineticBlock, ItemBlockKC2KineticBlock.class, "enderKineticBlock");
         GameRegistry.registerBlock(kineticEnergyCube, ItemBlockKC2EnergyCube.class, "kineticEnergyCube");
         GameRegistry.registerBlock(kineticGenerator, ItemBlockKC2KineticGenerator.class, "kineticGenerator");
         GameRegistry.registerBlock(enderKineticGenerator, ItemBlockKC2EnderKineticGenerator.class, "enderKineticGenerator");
+        GameRegistry.registerBlock(thermalKineticGenerator, ItemBlockKC2ThermalKineticGenerator.class, "thermalKineticGenerator");
         GameRegistry.registerBlock(enderKineticEnergyPylon, "enderKineticEnergyPylon");
         //GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
 
@@ -44,6 +48,15 @@ public class KinetiCraft2Blocks {
                 Blocks.sand,
                 Blocks.dirt
         });
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(netherKineticBlock, 4), new Object[]{
+                "SDS",
+                "BNB",
+                "SDS",
+                'S', Blocks.sand,
+                'D', Blocks.dirt,
+                'B', Items.blaze_powder,
+                'N', Blocks.netherrack
+        }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticBlock, 4), new Object[]{
                 "SDS",
                 "EPE",
@@ -91,6 +104,14 @@ public class KinetiCraft2Blocks {
                 'R', Items.redstone,
                 'I', KinetiCraft2Items.kineticIngot,
                 'G', KinetiCraft2Items.kineticGear
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(thermalKineticGenerator, 1, 0), new Object[]{
+                "IGI",
+                "GFG",
+                "IGI",
+                'F', KinetiCraft2Items.kineticFrame,
+                'I', KinetiCraft2Items.netherKineticIngot,
+                'G', KinetiCraft2Items.netherKineticGear
         }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enderKineticGenerator, 1, 0), new Object[]{
                 "IGI",
