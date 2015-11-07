@@ -5,6 +5,7 @@ import com.techmafia.mcmods.KinetiCraft2.creativetab.CreativeTabKC2;
 import com.techmafia.mcmods.KinetiCraft2.entities.EntityKC2Treadmill;
 import com.techmafia.mcmods.KinetiCraft2.reference.Reference;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.TileEntityKC2Treadmill;
+import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 /**
@@ -54,37 +56,22 @@ public class BlockKC2Treadmill extends BlockContainer {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
-    /*
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
-
-        if (!world.isRemote) {
-            EntityKC2Treadmill entityTreadmill = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
-            world.spawnEntityInWorld(entityTreadmill);
-            ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(entityTreadmill.getEntityId());
-
-            if (entityTreadmill != null) {
-                entityTreadmill.interactFirst(entityPlayer);
+        TileEntity te = world.getTileEntity(x, y, z);
+        if (te == null) {
+            return false;
+        } else {
+            if (entityPlayer.inventory.getCurrentItem() == null) {
+                // Return stored power if bare hand
+                if (world.isRemote) {
+                    entityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "" + ((TileEntityKC2Powered) te).getEnergyStored(null) + " / " + ((TileEntityKC2Powered) te).getMaxEnergyStored(null) + " RF"));
+                    return true;
+                }
             }
-
-            return true;
         }
-
-        if (canSit(world, x, y, z, entityPlayer, side, hitX, hitY, hitZ) && !world.isRemote) {
-            EntityKC2Treadmill entityTreadmill = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
-            world.spawnEntityInWorld(entityTreadmill);
-            ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(entityTreadmill.getEntityId());
-
-            if (entityTreadmill != null) {
-                entityTreadmill.interactFirst(entityPlayer);
-            }
-
-            return true;
-        }
-
         return false;
     }
-    */
 
     public boolean canSit(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         return true;

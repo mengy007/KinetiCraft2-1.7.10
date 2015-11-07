@@ -20,9 +20,9 @@ import java.util.List;
  * Created by Meng on 10/25/2015.
  */
 public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
-    private static final int powerOutputMultiplier = 2;
+    private static final int powerOutputMultiplier = 1;
     private static final int acceleration = 1;
-    private static final int maxSpeed = 20;
+    private static final int maxSpeed = 40;
     protected int entityId;
     protected EntityLiving latchedEntity;
 
@@ -100,11 +100,6 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
         }
         resync = false;
 
-        if (treadmillSpeed > 0) {
-            int powerToAdd = powerOutputMultiplier * treadmillSpeed;
-            receiveEnergy(null, powerToAdd, false);
-        }
-
         if (latchedEntity != null) {
             if (treadmillSpeed < maxSpeed) {
                 treadmillSpeed++;
@@ -112,11 +107,29 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
             latchedEntity.setLocationAndAngles(xCoord+0.5D, yCoord+1.0D, zCoord+0.5D, -2 * 90F, 0.0F);
             latchedEntity.setAIMoveSpeed((float)(treadmillSpeed/maxSpeed));
             latchedEntity.getNavigator().clearPathEntity();
+
+            if (treadmillSpeed > 0) {
+                int powerToAdd = powerOutputMultiplier * treadmillSpeed;
+                receiveEnergy(null, powerToAdd, false);
+
+                if (getEnergyStored(null) >= getMaxEnergyStored()) {
+                    launchVillager();
+                }
+            }
         } else {
             if (!isMounted && tickCount >= ticksBetweenChecks) {
                 scanForEntity();
             }
         }
+    }
+
+    public void launchVillager() {
+        latchedEntity.setVelocity(worldObj.rand.nextDouble(), worldObj.rand.nextDouble() * 3D, worldObj.rand.nextDouble());
+        latchedEntity = null;
+        isMounted = false;
+        entityId = -1;
+        resync = true;
+        worldObj.spawnParticle("explosion", xCoord+0.5D, yCoord+1D, zCoord+0.5D, 0D, 0D, 0D);
     }
 
     public void scanForEntity() {
@@ -141,13 +154,6 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
 
     public boolean isValidForTreadmill(EntityLiving entity) {
         return entity.getClass().isAssignableFrom(EntityVillager.class);
-        /*
-        if (entity instanceof EntityVillager) {
-            return true;
-        } else {
-            return false;
-        }
-        */
     }
 
     @Override
