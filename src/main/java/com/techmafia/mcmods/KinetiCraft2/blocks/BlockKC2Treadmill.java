@@ -25,7 +25,7 @@ public class BlockKC2Treadmill extends BlockContainer {
     public BlockKC2Treadmill() {
         super(Material.rock);
         this.setHardness(0.3f);
-        this.setBlockName("kc2treadmill");
+        this.setBlockName("kc2Treadmill");
         this.setCreativeTab(CreativeTabKC2.KC2_TAB);
     }
 
@@ -45,7 +45,6 @@ public class BlockKC2Treadmill extends BlockContainer {
         return true;
     }
 
-
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
         return new TileEntityKC2Treadmill();
@@ -55,6 +54,7 @@ public class BlockKC2Treadmill extends BlockContainer {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
+    /*
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
 
@@ -70,7 +70,6 @@ public class BlockKC2Treadmill extends BlockContainer {
             return true;
         }
 
-        /*
         if (canSit(world, x, y, z, entityPlayer, side, hitX, hitY, hitZ) && !world.isRemote) {
             EntityKC2Treadmill entityTreadmill = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
             world.spawnEntityInWorld(entityTreadmill);
@@ -82,21 +81,19 @@ public class BlockKC2Treadmill extends BlockContainer {
 
             return true;
         }
-        */
 
         return false;
     }
+    */
 
     public boolean canSit(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         return true;
     }
 
-    /*
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         EntityKC2Treadmill e = new EntityKC2Treadmill(world, x + 0.5D, y + 0.5D, z + 0.5D);
         world.spawnEntityInWorld(e);
         ((TileEntityKC2Treadmill) world.getTileEntity(x, y, z)).setEntityId(e.getEntityId());
     }
-    */
 }
