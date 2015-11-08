@@ -12,7 +12,9 @@ import java.io.File;
  */
 public class ConfigurationHandler {
     public static Configuration configuration;
-    public static boolean testValue = false;
+
+    public static int kineticEnergyCubeMaxEnergy = 400000;
+    public static int hardenedKineticEnergyCubeMaxEnergy = 2000000;
 
     public static void init(File configFile) {
         /* Create the config file if it does not exist */
@@ -23,10 +25,26 @@ public class ConfigurationHandler {
     }
 
     public static void loadConfiguration() {
-        testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, false, "This is a config test value");
+        /* Energy Cubes */
+        kineticEnergyCubeMaxEnergy = configuration.getInt(
+                "kineticEnergyCubeMaxEnergy",
+                Configuration.CATEGORY_GENERAL,
+                400000,
+                1,
+                2000000000,
+                "Kinetic Energy Cube Max Energy"
+        );
+        hardenedKineticEnergyCubeMaxEnergy = configuration.getInt(
+                "hardenedKineticEnergyCubeMaxEnergy",
+                Configuration.CATEGORY_GENERAL,
+                2000000,
+                1,
+                2000000000,
+                "Hardened Kinetic Energy Cube Max Energy"
+        );
 
         if (configuration.hasChanged()) {
-            configuration.load();
+            configuration.save();
         }
     }
 

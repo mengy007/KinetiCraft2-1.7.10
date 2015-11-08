@@ -39,6 +39,8 @@ public class TileEntityKC2ThermalKineticGenerator extends TileEntityKC2Powered {
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
+
         if (tickCount >= ticksBetweenChecks) {
             checkForLavaBlocks();
         }

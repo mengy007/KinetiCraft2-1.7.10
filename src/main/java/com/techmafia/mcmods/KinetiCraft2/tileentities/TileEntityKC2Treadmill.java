@@ -4,6 +4,7 @@ import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,13 +22,11 @@ import java.util.List;
  */
 public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
     private static final int powerOutputMultiplier = 1;
-    private static final int acceleration = 1;
-    private static final int maxSpeed = 40;
+    private static final int maxSpeed = 20;
     protected int entityId;
     protected EntityLiving latchedEntity;
 
     int treadmillSpeed = 0;
-    boolean isMounted = false;
 
     int ticksBetweenChecks = 3;
     int tickCount = 3;
@@ -52,7 +51,6 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
         super.writeToNBT(nbt);
 
         nbt.setInteger("treadmillSpeed", treadmillSpeed);
-        nbt.setBoolean("isMounted", isMounted);
         nbt.setInteger("entityId", entityId);
     }
 
@@ -61,7 +59,6 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
         super.readFromNBT(nbt);
 
         treadmillSpeed = nbt.getInteger("treadmillSpeed");
-        isMounted = nbt.getBoolean("isMounted");
         entityId = nbt.getInteger("entityId");
 
         resync = true;
@@ -108,33 +105,64 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
             latchedEntity.setAIMoveSpeed((float)(treadmillSpeed/maxSpeed));
             latchedEntity.getNavigator().clearPathEntity();
 
-            if (treadmillSpeed > 0) {
-                int powerToAdd = powerOutputMultiplier * treadmillSpeed;
-                receiveEnergy(null, powerToAdd, false);
+            if (worldObj.isRemote && treadmillSpeed >= maxSpeed) {
+                worldObj.spawnParticle(
+                        "smoke",
+                        (xCoord + 0.5D) + ((worldObj.rand.nextDouble() * 1D) - 0.5D),
+                        yCoord + 1D,
+                        (zCoord + 0.5D) + ((worldObj.rand.nextDouble() * 1D) - 0.5D),
+                        0D,
+                        0D,
+                        0D
+                );
 
-                if (getEnergyStored(null) >= getMaxEnergyStored()) {
-                    launchVillager();
+                worldObj.spawnParticle(
+                        "splash",
+                        (xCoord + 0.5D) + ((worldObj.rand.nextDouble() * 1D) - 0.5D),
+                        yCoord + 2.5D,
+                        (zCoord + 0.5D) + ((worldObj.rand.nextDouble() * 1D) - 0.5D),
+                        0D,
+                        0D,
+                        0D
+                );
+            }
+
+            if (treadmillSpeed > 0 && latchedEntity != null && latchedEntity.getClass().isAssignableFrom(EntityVillager.class)) {
+                if (!worldObj.isRemote) {
+                    int powerToAdd = powerOutputMultiplier * treadmillSpeed;
+                    receiveEnergy(null, powerToAdd, false);
+
+                    if (getEnergyStored(null) >= getMaxEnergyStored()) {
+                        if (latchedEntity != null && latchedEntity.getClass().isAssignableFrom(EntityVillager.class)) {
+                            latchedEntity.moveEntity(
+                                    (worldObj.rand.nextInt(6)-3),
+                                    (worldObj.rand.nextDouble() * 9D),
+                                    (worldObj.rand.nextInt(6)-3)
+                            );
+                            //latchedEntity.setVelocity(worldObj.rand.nextDouble(), worldObj.rand.nextDouble() * 3D, worldObj.rand.nextDouble());
+                            latchedEntity.setAIMoveSpeed(0F);
+                            latchedEntity = null;
+                            entityId = -1;
+                            resync = true;
+                            worldObj.spawnParticle("explode", xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D, 0D, 0D, 0D);
+                        }
+                    }
                 }
             }
         } else {
-            if (!isMounted && tickCount >= ticksBetweenChecks) {
+            if (tickCount >= ticksBetweenChecks) {
                 scanForEntity();
             }
         }
     }
 
-    public void launchVillager() {
-        latchedEntity.setVelocity(worldObj.rand.nextDouble(), worldObj.rand.nextDouble() * 3D, worldObj.rand.nextDouble());
-        latchedEntity = null;
-        isMounted = false;
-        entityId = -1;
-        resync = true;
-        worldObj.spawnParticle("explosion", xCoord+0.5D, yCoord+1D, zCoord+0.5D, 0D, 0D, 0D);
+    public int getTreadmillSpeed() {
+        return treadmillSpeed;
     }
 
     public void scanForEntity() {
         AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xCoord - 0.175D, yCoord - 0.175D, zCoord - 0.175D, xCoord + 1.175D, yCoord + 1.175D, zCoord + 1.175D);
-        List list = worldObj.getEntitiesWithinAABB(Entity.class, aabb);
+        List list = worldObj.getEntitiesWithinAABB(EntityAgeable.class, aabb);
 
         for (Object aList : list) {
             EntityLiving ent = (EntityLiving) aList;
@@ -143,7 +171,6 @@ public class TileEntityKC2Treadmill extends TileEntityKC2Powered {
                 if (ent.posX > aabb.minX && ent.posX < aabb.maxX && ent.posY > aabb.minY && ent.posY < aabb.maxY && ent.posZ > aabb.minZ && ent.posZ < aabb.maxZ) {
                     latchedEntity = ent;
                     latchedEntity.setLocationAndAngles(xCoord+0.5D, yCoord+1.0D, zCoord+0.5D, -2 * 90F, 0.0F);
-                    isMounted = true;
                     entityId = latchedEntity.getEntityId();
                     worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                     break;

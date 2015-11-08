@@ -41,7 +41,7 @@ public class KinetiCraft2Blocks {
         GameRegistry.registerBlock(enderKineticGenerator, ItemBlockKC2EnderKineticGenerator.class, "enderKineticGenerator");
         GameRegistry.registerBlock(thermalKineticGenerator, ItemBlockKC2ThermalKineticGenerator.class, "thermalKineticGenerator");
         GameRegistry.registerBlock(enderKineticEnergyPylon, "enderKineticEnergyPylon");
-        GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2treadmill");
+        GameRegistry.registerBlock(kc2treadmill, ItemBlockKC2Treadmill.class, "kc2Treadmill");
 
         /* Crafting Recipes */
         GameRegistry.addShapelessRecipe(new ItemStack(kineticBlock, 2), new Object[]{
@@ -102,6 +102,14 @@ public class KinetiCraft2Blocks {
                 "GRG",
                 "IGI",
                 'R', Items.redstone,
+                'I', KinetiCraft2Items.kineticIngot,
+                'G', KinetiCraft2Items.kineticGear
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(kc2treadmill, 1, 0), new Object[]{
+                "IGI",
+                "GEG",
+                "IGI",
+                'E', Items.emerald,
                 'I', KinetiCraft2Items.kineticIngot,
                 'G', KinetiCraft2Items.kineticGear
         }));

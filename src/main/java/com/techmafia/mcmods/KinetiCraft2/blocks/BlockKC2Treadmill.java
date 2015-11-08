@@ -18,12 +18,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 /**
  * Created by Meng on 10/25/2015.
  */
 public class BlockKC2Treadmill extends BlockContainer {
+    IIcon sideIcon;
+    IIcon[] topIcons = new IIcon[2];
+    int topAnimationFrame = 0;
+
     public BlockKC2Treadmill() {
         super(Material.rock);
         this.setHardness(0.3f);
@@ -40,7 +46,41 @@ public class BlockKC2Treadmill extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
         blockIcon = iconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1));
+        sideIcon = iconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1) + "_side");
+        topIcons[0] = iconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1) + "_top0");
+        topIcons[1] = iconRegister.registerIcon(Reference.MOD_NAME + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(":") + 1) + "_top1");
     }
+
+    @Override
+    public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
+        if (side == 1) {
+            TileEntity te = blockAccess.getTileEntity(x, y, z);
+            if (te != null && te instanceof TileEntityKC2Treadmill) {
+                if (((TileEntityKC2Treadmill)te).getTreadmillSpeed() > 0) {
+                    IIcon iconToUse = topIcons[topAnimationFrame];
+                    topAnimationFrame++;
+                    if (topAnimationFrame >= topIcons.length) {
+                        topAnimationFrame = 0;
+                    }
+                    return iconToUse;
+                }
+                return topIcons[1];
+            }
+        }
+        return sideIcon;
+    }
+
+    /*
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int metadata) {
+        if (side == 1) {
+            return topIcon;
+        } else {
+            return sideIcon;
+        }
+    }
+    */
 
     @Override
     public boolean hasTileEntity(int metadata) {
@@ -71,10 +111,6 @@ public class BlockKC2Treadmill extends BlockContainer {
             }
         }
         return false;
-    }
-
-    public boolean canSit(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        return true;
     }
 
     @Override

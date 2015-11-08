@@ -29,6 +29,7 @@ tile.kc2KineticGenerator0.name=Kinetic Generator
 tile.kc2EnderKineticGenerator0.name=Ender Kinetic Generator
 tile.kc2ThermalKineticGenerator0.name=Thermal Kinetic Generator
 tile.kc2EnderKineticEnergyPylon.name=Ender Kinetic Energy Pylon
+tile.mengy007_kineticraft2:kc2Treadmill0.name=Villager Treadmill
 item.kc2KineticWoodenPickaxe.name=Kinetic Wooden Pickaxe
 item.kc2KineticStonePickaxe.name=Kinetic Stone Pickaxe
 item.kc2KineticIronPickaxe.name=Kinetic Iron Pickaxe
