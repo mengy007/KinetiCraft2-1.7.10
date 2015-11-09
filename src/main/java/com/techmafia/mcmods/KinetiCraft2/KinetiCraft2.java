@@ -22,7 +22,7 @@ public class KinetiCraft2
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent preInitializationEvent) {
         /* Config */
-        ConfigurationHandler.init(preInitializationEvent.getSuggestedConfigurationFile());
+        ConfigurationHandler.loadConfig(preInitializationEvent.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 
         /* proxy */

@@ -1,6 +1,7 @@
 package com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks;
 
 import com.techmafia.mcmods.KinetiCraft2.blocks.itemblocks.base.ItemBlockKC2Powered;
+import com.techmafia.mcmods.KinetiCraft2.handlers.ConfigurationHandler;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,10 +18,10 @@ public class ItemBlockKC2EnergyCube extends ItemBlockKC2Powered {
     public ItemBlockKC2EnergyCube(Block block) {
         super(block);
 
-        capacity[0] = 400000;
-        capacity[1] = 2000000;
-        capacity[2] = 20000000;
-        capacity[3] = 80000000;
+        capacity[0] = ConfigurationHandler.kineticEnergyCubeMaxEnergy;//400000;
+        capacity[1] = ConfigurationHandler.hardenedKineticEnergyCubeMaxEnergy;//2000000;
+        capacity[2] = ConfigurationHandler.reinforcedKineticEnergyCubeMaxEnergy;//20000000;
+        capacity[3] = ConfigurationHandler.resonantKineticEnergyCubeMaxEnergy;//80000000;
     }
 
     @Override

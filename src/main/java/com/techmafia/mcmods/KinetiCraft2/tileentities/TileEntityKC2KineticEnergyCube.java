@@ -1,5 +1,6 @@
 package com.techmafia.mcmods.KinetiCraft2.tileentities;
 
+import com.techmafia.mcmods.KinetiCraft2.handlers.ConfigurationHandler;
 import com.techmafia.mcmods.KinetiCraft2.tileentities.base.TileEntityKC2Powered;
 
 /**
@@ -12,6 +13,6 @@ public class TileEntityKC2KineticEnergyCube extends TileEntityKC2Powered {
 
     @Override
     public int getMaxEnergyStored() {
-        return 400000;
+        return ConfigurationHandler.kineticEnergyCubeMaxEnergy;//400000;
     }
 }
